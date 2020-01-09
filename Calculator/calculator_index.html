@@ -1,57 +1,76 @@
 <!DOCTYPE html>
 
 <HTML>
-
     <head>
         <title>Calculator</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
         <link rel="stylesheet" type="text/css" href="calculator_style.css">
 
-        <!-- Bulma stylesheet import -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-
-        <!-- Optional of variable editing (i think)
+        <!-- For optional variable editing (i think)
         <script src="https://cdn.jsdelivr.net/npm/bulma@0.8.0/bulma.sass"></script> -->
         
-        <!-- Vue.js script import -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <!-- Font Awesome icons, recommeneded by Bulma-->
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     </head>
 
     <body>
-        <div> Hello World </div>
-        <div> 1 2 3 4 5 6 7 8 9 0 </div>
-
         <section class="section">
-            <div class="container">
-              <h1 class="title">
-                Hello World
-              </h1>
-              <p class="subtitle">
-                My first website with <strong>Bulma</strong>!
-              </p>
+        <div class="columns is-mobile">
+            <div class="column is-half-tablet is-one-third-desktop">
+                <h1 class="title">Alex's Calculator</h1>
+                <p class="subtitle is-6">Use the keypad or enter equations directly below</p>
+                <div id="input">
+                    <input class="input" type="text" placeholder="Enter an equation" autofocus>
+                </div>
             </div>
+        </div>
+
+        <div class="columns is-mobile">
+            <div class="column is-half-tablet is-one-third-desktop">
+                <div id="output">
+                    Output will go here
+                </div>
+            </div>
+        </div>
+
+        <div class="columns is-mobile">
+            <div class="column has-text-centered is-one-fifth-mobile">
+                <button class="button">7</button>
+                <button class="button">4</button>
+                <button class="button">1</button>
+                <button class="button">0</button>
+            </div>
+            <div class="column has-text-centered is-one-fifth-mobile">
+                <button class="button">8</button>
+                <button class="button">5</button>
+                <button class="button">2</button>
+                <button class="button">.</button>
+            </div>
+            <div class="column has-text-centered is-one-fifth-mobile">
+                <button class="button">9</button>
+                <button class="button">6</button>
+                <button class="button">3</button>
+                <button class="button">Pi</button>
+            </div>
+            <div class="column has-text-centered is-one-fifth-mobile">
+                <button class="button">DEL</button>
+                <button class="button"><i class="fas fa-times"></i></button>
+                <button class="button"><i class="fas fa-plus"></i></button>
+                <button class="button">ANS</button>
+            </div>
+            <div class="column has-text-centered is-one-fifth-mobile">
+                <button class="button">AC</button>
+                <button class="button"><i class="fas fa-divide"></i></button>
+                <button class="button"><i class="fas fa-minus"></i></button>
+                <button class="button"><i class="fas fa-equals"></i></button>
+            </div>
+            <div class="column is-half-tablet is-two-thirds-desktop"></div>
+        </div>
         </section>
-        
-        <div class="columns">
-            <div class="column">
-              First column
-            </div>
-            <div class="column">
-              Second column
-            </div>
-            <div class="column">
-              Third column
-            </div>
-            <div class="column">
-              Fourth column
-            </div>
-          </div>
 
         <script src="calculator_script.js"></script>
     </body>
-
 </HTML>

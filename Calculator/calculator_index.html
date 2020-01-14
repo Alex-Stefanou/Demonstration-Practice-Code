@@ -20,7 +20,7 @@
                 <h1 class="title">Alex's Calculator</h1>
                 <p class="subtitle is-6">Use the keypad or enter equations directly below</p>
                 <div id="input">
-                    <input v-model="equation" class="input" placeholder="Enter an equation" autofocus>
+                    <input v-model.lazy="equation" class="input" placeholder="Enter an equation" autofocus>
                 </div>
                 <div id="output">
                     <div class="spacer"> {{ answer }} </div>
@@ -76,7 +76,7 @@
                     id="divide" class="button"><i class="fas fa-divide"></i></button>
                 <button v-on:click="pushEqn" 
                     id="minus" class="button"><i class="fas fa-minus"></i></button>
-                <button v-on:click="pushEqn" 
+                <button v-on:click="resolveEqn" 
                     id="equals" class="button"><i class="fas fa-equals"></i></button>
             </div>
             <div class="column is-half-tablet is-two-thirds-desktop"></div>

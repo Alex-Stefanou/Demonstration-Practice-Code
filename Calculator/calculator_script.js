@@ -27,7 +27,7 @@ function buttonPress( input, id ) {
 
 /* Function to resolve input string into computable chunks for compute() */
 function parseEqn (input) {
-    var equation = {operation: null, LHS: null, RHS: null, errorCode: 0};
+    var equation = {operation: null, LHS: null, RHS: null, result: null, errorCode: 0};
 
     input = input.replace( /\s/g , "" )              //Remove all whitespace
     input = input.replace( /\,/g , "." )             //Replace all decimal commas with decimal points
@@ -51,6 +51,7 @@ function parseEqn (input) {
         else if ( decimalsInput > 1) equation.errorCode = 3;
         
         equation.operation = "none";
+        equation.result = input;
         return equation;
     }
     if ( opTotal > 1) {     //Too many operators, return error 1
@@ -101,7 +102,13 @@ function parseEqn (input) {
         equation.errorCode = 4;
         return equation;
     }
-    
+
+    //Check for division by zero
+    if ( equation.operation == "division" && equation.RHS == 0) {
+        equation.errorCode = 5;
+        return equation;
+    }
+
     //Equation is now 'clean' and ready for computation
     return equation;
 }
@@ -113,29 +120,36 @@ function errorID (id) {
         case 2: return "Error: Non-digit character";        break;
         case 3: return "Error: Too many decimal separators";break;
         case 4: return "Error: Missing term";               break;
+        case 5: return "Error: Division by zero";           break;
         default: return "An unknown error has occured";
     }
 }
 
 /* Function to compute equation */
 function compute (input) {
-    //take input and verify
-    var equation = parseEqn(input)
-    if ( equation.errorCode != 0) return errorID(equation.errorCode);
-    if ( equation.operation == "none") return input;
+    //Parse input
+    var equation = parseEqn(input);
+    var result = 0
 
-        //if illegal chars -> error Non-numerical values entered
-    //find and classify operator
-        //if no operator -> return input
-        //if >1 op -> error only one operator accepted
-    //split either side of operator into left and right
-        //if left is empty -> error no left hand term
-        //if right is empty -> error no right hand term
-        //if left or right has >1 decimal point -> error incorrect decimal point usage
-        //if right=0 && op=division -> error division by zero
-    //convert left and right to numbers (and commas to dots)
-    //calculate result
-    //return result
+    //Handle any returned errors
+    if ( equation.errorCode != 0) return errorID(equation.errorCode);
+    if ( equation.operation == "none") return equation.result;
+    
+    //Convert strings to numbers
+    let LHS = parseFloat(equation.LHS);
+    let RHS = parseFloat(equation.RHS);
+
+    console.log(`LHS = ${LHS} and RHS = ${RHS}`);
+
+    //Compute result
+    if ( equation.operation = "addition")       result = LHS + RHS;
+    if ( equation.operation = "subtraction")    result = LHS - RHS;
+    if ( equation.operation = "multiplication") result = LHS * RHS;
+    if ( equation.operation = "division")       result = LHS / RHS;
+    
+    equation.result = toString(result);
+    console.log(`result num = ${result}, eqn result = ${equation.result}`);
+    return equation.result;
 }
 
 /* Core application: */

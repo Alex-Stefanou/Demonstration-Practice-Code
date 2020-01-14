@@ -1,39 +1,63 @@
 var result="0";
-var mem=0;
 var error =
     ["Error: Non-numerical values entered",
      "Error: Calculator can only accept one operator",
      "Error: Division by 0 is undefined"];
 
-/*
-function parseEquation(input){
-    result = input;
-}*/
+/* Function to handle button pressing:
+Enters respective characters into the input bar */
+function buttonPress(input, id){
+    console.log("Button press registered");
+    switch(id){
+        case "ac":      return "";                  break;
+        case "del":     return input.slice(0,-1);   break;
+        case "plus":    return input + "+";         break;
+        case "minus":   return input + "-";         break;
+        case "times":   return input + "*";         break;
+        case "divide":  return input + "/";         break;
+        
+        case "dot": return input + "."; break;
+        case "$0":  return input + "0"; break;
+        case "$1":  return input + "1"; break;
+        case "$2":  return input + "2"; break;
+        case "$3":  return input + "3"; break;
+        case "$4":  return input + "4"; break;
+        case "$5":  return input + "5"; break;
+        case "$6":  return input + "6"; break;
+        case "$7":  return input + "7"; break;
+        case "$8":  return input + "8"; break;
+        case "$9":  return input + "9"; break;
 
-function add_char(str){
-    result += str;
-    return null;
+        default: return "error";   break; //Default should never be reached
+    }
 }
 
+function compute(input){
+
+}
+
+/* Core application: */
 var vm = new Vue({
     el: '#calculator',
     data: {
-        input: "",
+        equation: "",
         answer: result
     },
     methods: {
-        button: function(e) {
-            this.input = buttonPress(this.input, e.toElement.id)
-        } 
-    },
+        pushEqn: function(e) {
+            this.equation = buttonPress(this.equation, e.target.id)
+        }
+    }/*,
     computed: {
-        
-    }
-})
+        output: function() {
+            return compute(this.input)
+        }
+    }*/
+});
 
 
 /*
-var buttons = new Vue2({
+var buttons = new Vue({
     add_character: add_char(x) {
         temp_result += x,
         result = temp_result,

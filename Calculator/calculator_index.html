@@ -20,7 +20,7 @@
                 <h1 class="title">Alex's Calculator</h1>
                 <p class="subtitle is-6">Use the keypad or enter equations directly below</p>
                 <div id="input">
-                    <input v-model.lazy="equation" class="input" placeholder="Enter an equation" autofocus>
+                    <input v-model="equation" class="input" placeholder="Enter an equation" autofocus>
                 </div>
                 <div id="output">
                     <div class="spacer"> {{ answer }} </div>
@@ -30,53 +30,53 @@
         
         <div class="columns is-mobile">
             <div class="column has-text-centered is-one-fifth-mobile">
-                <button v-on:click="button" 
-                    id="7" class="button">7</button>
-                <button v-on:click="button" 
-                    id="4" class="button">4</button>
-                <button v-on:click="button" 
-                    id="1" class="button">1</button>
-                <button v-on:click="button" 
-                    id="0" class="button">0</button>
+                <button v-on:click="pushEqn" 
+                    id="$7" class="button">7</button>
+                <button v-on:click="pushEqn" 
+                    id="$4" class="button">4</button>
+                <button v-on:click="pushEqn" 
+                    id="$1" class="button">1</button>
+                <button v-on:click="pushEqn" 
+                    id="$0" class="button">0</button>
             </div>
             <div class="column has-text-centered is-one-fifth-mobile">
-                <button v-on:click="button" 
-                    id="8" class="button">8</button>
-                <button v-on:click="button" 
-                    id="5" class="button">5</button>
-                <button v-on:click="button" 
-                    id="2" class="button">2</button>
-                <button v-on:click="button" 
-                    id="point" class="button">.</button>
+                <button v-on:click="pushEqn" 
+                    id="$8" class="button">8</button>
+                <button v-on:click="pushEqn" 
+                    id="$5" class="button">5</button>
+                <button v-on:click="pushEqn" 
+                    id="$2" class="button">2</button>
+                <button v-on:click="pushEqn" 
+                    id="dot" class="button">.</button>
             </div>
             <div class="column has-text-centered is-one-fifth-mobile">
-                <button v-on:click="button" 
-                    id="9" class="button">9</button>
-                <button v-on:click="button" 
-                    id="6" class="button">6</button>
-                <button v-on:click="button" 
-                    id="3" class="button">3</button>
-                <button v-on:click="button" 
-                    id="pi" class="button is-static">Pi</button>
+                <button v-on:click="pushEqn" 
+                    id="$9" class="button">9</button>
+                <button v-on:click="pushEqn" 
+                    id="$6" class="button">6</button>
+                <button v-on:click="pushEqn" 
+                    id="$3" class="button">3</button>
+                <button v-on:click="pushEqn" 
+                    id="$pi" class="button is-static">Pi</button>
             </div>
             <div class="column has-text-centered is-one-fifth-mobile">
-                <button v-on:click="button" 
+                <button v-on:click="pushEqn" 
                     id="del" class="button">DEL</button>
-                <button v-on:click="button" 
+                <button v-on:click="pushEqn" 
                     id="times" class="button"><i class="fas fa-times"></i></button>
-                <button v-on:click="button" 
+                <button v-on:click="pushEqn" 
                     id="plus" class="button"><i class="fas fa-plus"></i></button>
-                <button v-on:click="button" 
+                <button v-on:click="pushEqn" 
                     id="ans" class="button is-static">ANS</button>
             </div>
             <div class="column has-text-centered is-one-fifth-mobile">
-                <button v-on:click="button" 
+                <button v-on:click="pushEqn" 
                     id="ac" class="button">AC</button>
-                <button v-on:click="button" 
+                <button v-on:click="pushEqn" 
                     id="divide" class="button"><i class="fas fa-divide"></i></button>
-                <button v-on:click="button" 
+                <button v-on:click="pushEqn" 
                     id="minus" class="button"><i class="fas fa-minus"></i></button>
-                <button v-on:click="button" 
+                <button v-on:click="pushEqn" 
                     id="equals" class="button"><i class="fas fa-equals"></i></button>
             </div>
             <div class="column is-half-tablet is-two-thirds-desktop"></div>

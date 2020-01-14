@@ -15,14 +15,20 @@ function add_char(str){
     return null;
 }
 
-var calculator = new Vue({
+var vm = new Vue({
     el: '#calculator',
     data: {
+        input: "",
         answer: result
     },
     methods: {
-        zero:   function(zero){add_char("0")} 
+        button: function(e) {
+            this.input = buttonPress(this.input, e.toElement.id)
+        } 
     },
+    computed: {
+        
+    }
 })
 
 

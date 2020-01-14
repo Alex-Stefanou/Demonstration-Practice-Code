@@ -35,6 +35,10 @@ body {
     width: 4em;
 }
 
+.button.is-static {
+    background-color: #3a1b1b;
+}
+
 .column {
     padding: 3px;
 }

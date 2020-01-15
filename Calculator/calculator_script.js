@@ -3,13 +3,13 @@ Enters respective characters into the input bar */
 function buttonPress( input, id ) {
     console.log("Button press registered");
     switch( id ) {
-        case "del":     return input.slice(0,-1);   break;
-        case "plus":    return input + "+";         break;
-        case "minus":   return input + "-";         break;
-        case "times":   return input + "*";         break;
-        case "divide":  return input + "/";         break;
-        
-        case "dot": return input + "."; break;
+        case "$del":    return input.slice(0,-1);   break;
+        case "$plus":   return input + "+";         break;
+        case "$minus":  return input + "-";         break;
+        case "$times":  return input + "*";         break;
+        case "$divide": return input + "/";         break;
+
+        case "$dot":return input + "."; break;
         case "$0":  return input + "0"; break;
         case "$1":  return input + "1"; break;
         case "$2":  return input + "2"; break;
@@ -21,7 +21,10 @@ function buttonPress( input, id ) {
         case "$8":  return input + "8"; break;
         case "$9":  return input + "9"; break;
 
-        default: return "error";   break; //Default should never be reached
+        default: {
+            console.log(`Returning default due to an id of ${id}`)
+            return "error";   break; //Default should never be reached
+        }
     }
 }
 
@@ -39,7 +42,7 @@ function parseEqn (input) {
     let opDivide =  (input.match(/\//g)||[]).length;
 
     let opTotal = opPlus + opMinus + opTimes + opDivide;
-    console.log(`Operators = ${opTotal}`);
+    console.log(`Operators = pluses: ${opPlus}, minuses ${opMinus}, timeses ${opTimes}, and divs: ${opDivide}`);
 
     if ( opTotal == 0 ) {   //No operator in input and no other errors, return the input
         let decimalsInput = (input.match(/\./g) || []).length;
@@ -129,7 +132,7 @@ function errorID (id) {
 function compute (input) {
     //Parse input
     var equation = parseEqn(input);
-    var result = 0
+    let result = 0
 
     //Handle any returned errors
     if ( equation.errorCode != 0) return errorID(equation.errorCode);
@@ -139,15 +142,15 @@ function compute (input) {
     let LHS = parseFloat(equation.LHS);
     let RHS = parseFloat(equation.RHS);
 
-    console.log(`LHS = ${LHS} and RHS = ${RHS}`);
+    console.log(`LHS = ${LHS} and RHS = ${RHS} and equation op is ${equation.operation}`);
 
     //Compute result
-    if ( equation.operation = "addition")       result = LHS + RHS;
-    if ( equation.operation = "subtraction")    result = LHS - RHS;
-    if ( equation.operation = "multiplication") result = LHS * RHS;
-    if ( equation.operation = "division")       result = LHS / RHS;
+    if      ( equation.operation == "addition")       result = LHS + RHS;
+    else if ( equation.operation == "subtraction")    result = LHS - RHS;
+    else if ( equation.operation == "multiplication") result = LHS * RHS;
+    else if ( equation.operation == "division")       result = LHS / RHS;
     
-    equation.result = toString(result);
+    equation.result = result.toString();
     console.log(`result num = ${result}, eqn result = ${equation.result}`);
     return equation.result;
 }
@@ -161,6 +164,7 @@ var vm = new Vue({
     },
     methods: {
         pushEqn: function(e) {
+            console.log(`button pressed with an id of ${e.target.id}`)
             this.equation = buttonPress(this.equation, e.target.id)
         },
         clearEqn: function() {

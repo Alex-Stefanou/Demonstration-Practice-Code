@@ -68,17 +68,17 @@ function parseEqn (input) {
         equation.LHS = input.split( "+" )[0];
         equation.RHS = input.split( "+" )[1];
     }
-    if ( opMinus == 1) {
+    else if ( opMinus == 1) {
         equation.operation = "subtraction";
         equation.LHS = input.split( "-" )[0];
         equation.RHS = input.split( "-" )[1];
     }
-    if ( opTimes == 1) {
+    else if ( opTimes == 1) {
         equation.operation = "multiplication";
         equation.LHS = input.split( "*" )[0];
         equation.RHS = input.split( "*" )[1];
     }
-    if ( opDivide == 1) {
+    else if ( opDivide == 1) {
         equation.operation = "division";
         equation.LHS = input.split( "/" )[0];
         equation.RHS = input.split( "/" )[1];

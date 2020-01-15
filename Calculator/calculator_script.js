@@ -21,7 +21,6 @@ function buttonPress( input, id ) {
         case "$9":  return input + "9"; break;
 
         default: return "error"; break; //Default should never be reached
-        }
     }
 }
 

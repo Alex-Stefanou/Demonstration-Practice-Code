@@ -1,7 +1,6 @@
 /* Function to handle button pressing:
 Enters respective characters into the input bar */
 function buttonPress( input, id ) {
-    console.log("Button press registered");
     switch( id ) {
         case "$del":    return input.slice(0,-1);   break;
         case "$plus":   return input + "+";         break;
@@ -21,9 +20,7 @@ function buttonPress( input, id ) {
         case "$8":  return input + "8"; break;
         case "$9":  return input + "9"; break;
 
-        default: {
-            console.log(`Returning default due to an id of ${id}`)
-            return "error";   break; //Default should never be reached
+        default: return "error"; break; //Default should never be reached
         }
     }
 }
@@ -32,23 +29,23 @@ function buttonPress( input, id ) {
 function parseEqn (input) {
     var equation = {operation: null, LHS: null, RHS: null, result: null, errorCode: 0};
 
-    input = input.replace( /\s/g , "" )              //Remove all whitespace
-    input = input.replace( /\,/g , "." )             //Replace all decimal commas with decimal points
-    console.log(`Input equation is: ${input}`);
+    //Remove whitespace and unify decimal separaters
+    input = input.replace( /\s/g , "" )
+    input = input.replace( /\,/g , "." )
 
-    let opPlus =    (input.match(/\+/g)||[]).length; //Counts number of operators (if null then 0)
+    //Identify and count operators
+    let opPlus =    (input.match(/\+/g)||[]).length; 
     let opMinus =   (input.match(/\-/g)||[]).length;
     let opTimes =   (input.match(/\*/g)||[]).length;
     let opDivide =  (input.match(/\//g)||[]).length;
 
     let opTotal = opPlus + opMinus + opTimes + opDivide;
-    console.log(`Operators = pluses: ${opPlus}, minuses ${opMinus}, timeses ${opTimes}, and divs: ${opDivide}`);
 
-    if ( opTotal == 0 ) {   //No operator in input and no other errors, return the input
+    //Handle irregular numbers of operators
+    if ( opTotal == 0 ) {
+        //For 0 operators: error check and return input
         let decimalsInput = (input.match(/\./g) || []).length;
         let digitsInput =   (input.match(/\d/g) || []).length;
-
-        console.log(`There are ${decimalsInput} decimal separaters and ${digitsInput} digits`);
         
         if ( digitsInput + decimalsInput != input.length ) equation.errorCode = 2;
         else if ( decimalsInput > 1) equation.errorCode = 3;
@@ -57,7 +54,7 @@ function parseEqn (input) {
         equation.result = input;
         return equation;
     }
-    if ( opTotal > 1) {     //Too many operators, return error 1
+    if ( opTotal > 1) {
         equation.errorCode = 1;
         return equation;
     }
@@ -142,8 +139,6 @@ function compute (input) {
     let LHS = parseFloat(equation.LHS);
     let RHS = parseFloat(equation.RHS);
 
-    console.log(`LHS = ${LHS} and RHS = ${RHS} and equation op is ${equation.operation}`);
-
     //Compute result
     if      ( equation.operation == "addition")       result = LHS + RHS;
     else if ( equation.operation == "subtraction")    result = LHS - RHS;
@@ -151,7 +146,6 @@ function compute (input) {
     else if ( equation.operation == "division")       result = LHS / RHS;
     
     equation.result = result.toString();
-    console.log(`result num = ${result}, eqn result = ${equation.result}`);
     return equation.result;
 }
 
@@ -164,17 +158,14 @@ var vm = new Vue({
     },
     methods: {
         pushEqn: function(e) {
-            console.log(`button pressed with an id of ${e.target.id}`)
-            this.equation = buttonPress(this.equation, e.target.id)
+            this.equation = buttonPress(this.equation, e.toElement.id)
         },
         clearEqn: function() {
             this.equation = "";
             this.answer = "0"
         },
         resolveEqn: function() {
-            console.log("Starting Computation");
             this.answer = compute(this.equation);
-            console.log("Computation Complete")
         }
     }
 });

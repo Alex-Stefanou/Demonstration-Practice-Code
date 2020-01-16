@@ -8,30 +8,35 @@
 </template>
 
 <script>
+var time = {
+  currentTime: "",
+  hour:   0,
+  minute: 0,
+  second: 0
+};
+
+function updateTime(){
+  let now = new Date();
+  time.hour = now.getHours();
+  time.minute = now.getMinutes();
+  time.second = now.getSeconds();
+  time.currentTime = time.hour.toString()+":"+time.minute.toString()+":"+time.second.toString();
+  setTimeout(updateTime, 1000);
+}
+
 export default {
   name: 'Box1-clock',
-  data: {
-    currentTime () {
-      return {time: this.currentTime}
-    }
+  data: function currentTime () {
+    return {time: time.currentTime,};
   },
-  updated: updateTime () {
-    this.currentTime = 
+  beforeMount() {
+    updateTime();
   }
-  created: setInterval() {
-    setInterval(() => {
-      this.tick++
-    }, 1000)
 }
 </script>
-let date = new Date()
-      let currentTime = date.getHours().toString()+":"+date.getMinutes().toString();
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-
-
 h3 {
   margin: 40px 0 0;
 }

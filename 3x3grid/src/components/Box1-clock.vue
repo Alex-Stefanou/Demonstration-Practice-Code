@@ -1,6 +1,6 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>Hello World</h1>
+    <h1>Hello Clock</h1>
   </div>
 </template>
 

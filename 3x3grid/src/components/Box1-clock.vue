@@ -1,20 +1,37 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>Hello Clock</h1>
+    <h1>The time is</h1>
+    <div id="clock">
+      {{time}}
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'Box1-clock',
+  data: {
+    currentTime () {
+      return {time: this.currentTime}
+    }
+  },
+  updated: updateTime () {
+    this.currentTime = 
   }
+  created: setInterval() {
+    setInterval(() => {
+      this.tick++
+    }, 1000)
 }
 </script>
+let date = new Date()
+      let currentTime = date.getHours().toString()+":"+date.getMinutes().toString();
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+
+
 h3 {
   margin: 40px 0 0;
 }

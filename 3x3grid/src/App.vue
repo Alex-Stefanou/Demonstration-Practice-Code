@@ -9,6 +9,9 @@
       <box3/> -->
     </div>
     <div class="columns is-tablet">
+      <box1/>
+      <box1/>
+      <box1/>
       <!--
       <box4/>
       <box5/>
@@ -64,6 +67,8 @@ export default {
 }
 
 .column {
-
+  background-color: bisque;
+  border: brown solid 4px;
+  margin: 2px;
 }
 </style>

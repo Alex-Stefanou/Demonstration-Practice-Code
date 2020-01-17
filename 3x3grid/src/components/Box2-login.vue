@@ -6,7 +6,7 @@
       <input v-model="input.password" type="password" class="input" placeholder="Password">
     </div>
     <button v-on:click="login" class="button">Log in</button>
-    <span v-if="input.status === 0">Sign in successful</span>
+    <span v-if="input.status === 0" class="success">Log in successful</span>
     <span v-if="input.status === 1">Enter a username and password</span>
     <span v-if="input.status === 2">Incorrect username or password</span>
   </div>
@@ -54,8 +54,8 @@ export default {
   text-align: left;
 }
 
-.loginMessage {
-  padding: 1em;
+.success {
+  background-color: green;
 }
 
 </style>

@@ -12,8 +12,7 @@
   </div>
 </template>
 
-<script> // use toLocaleTimeString()
-
+<script>
 export default {
   name: 'Box2-login',
 

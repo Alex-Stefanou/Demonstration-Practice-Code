@@ -9,8 +9,7 @@
   </div>
 </template>
 
-<script> // use toLocaleTimeString()
-
+<script>
 export default {
   name: 'Box1-clock',
 

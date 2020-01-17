@@ -3,9 +3,7 @@
     <div class="columns is-tablet">
       <box1/>
       <box2/>
-      <box1/>
-      <!--
-      <box3/> -->
+      <box3/>
     </div>
     <div class="columns is-tablet">
       <box1/>
@@ -40,13 +38,15 @@
 <script>
 import Box1 from './components/Box1-clock.vue'
 import Box2 from './components/Box2-login.vue'
+import Box3 from './components/Box3-quiz.vue'
 
 export default {
   name: 'app',
 
   components: {
     Box1,   //Digital clock
-    Box2,    //Login screen
+    Box2,   //Login screen
+    Box3,   //Quiz
   },
 /* 
   data() {

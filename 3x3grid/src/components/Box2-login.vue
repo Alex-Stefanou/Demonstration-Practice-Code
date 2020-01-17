@@ -2,11 +2,13 @@
   <div class="column is-one-third-tablet">
     <h1>Sign in:</h1>
     <div>
-      <input v-model="username" type="text" class="input" placeholder="Username">
-      <input v-model="password" type="password" class="input" placeholder="Password">
+      <input v-model="input.username" type="text" class="input" placeholder="Username">
+      <input v-model="input.password" type="password" class="input" placeholder="Password">
     </div>
     <button v-on:click="login" class="button">Log in</button>
-    <span>{{loginMessage}}</span>
+    <span v-if="input.status === 0">Sign in successful</span>
+    <span v-if="input.status === 1">Enter a username and password</span>
+    <span v-if="input.status === 2">Incorrect username or password</span>
   </div>
 </template>
 
@@ -17,25 +19,30 @@ export default {
 
   data: function() {
     return{
-      username: "",
-      password: "",
-      loginMessage: "",
+      input: {
+        username: "",
+        password: "",
+        status: -1,
+      },
+      userData: {
+        admin: "admin",
+        alex: "Hunter2"
+      },
     };
   },
-/* 
-  mounted: function() {
-    this.updateTime();
-    setInterval(this.updateTime, 1000);
-  }, */
 
   methods: {
-    loginmessage (success){
-      if ( success ) return "Sign in successful";
-      else return "Incorrect username or password";
+    authenticate () { //Check if an object property exsists with name==username and value===password
+      if( this.userData[this.input.username.toLowerCase()] //username is not case sensitive
+        &&this.userData[this.input.username.toLowerCase()] === this.input.password ) return 0;
+      else return 2;
     },
 
     login: function() {
-
+      if ( this.input.username != "" && this.input.password != "" ){
+        return this.input.status = this.authenticate ();
+      }
+      else return this.input.status = 1;
     }
   },
 };

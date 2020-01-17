@@ -14,7 +14,7 @@
 export default {
   name: 'Box1-clock',
 
-  data: function() {
+  data() {
     return{
       hours: String,
       minutes: String,
@@ -22,7 +22,7 @@ export default {
     };
   },
 
-  mounted: function() {
+  mounted() {
     this.updateTime();
     setInterval(this.updateTime, 1000);
   },

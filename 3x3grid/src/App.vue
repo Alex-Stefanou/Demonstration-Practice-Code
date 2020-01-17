@@ -43,10 +43,17 @@ import Box2 from './components/Box2-login.vue'
 
 export default {
   name: 'app',
+
   components: {
     Box1,   //Digital clock
-    Box2    //Login screen
-  }
+    Box2,    //Login screen
+  },
+/* 
+  data() {
+    return {
+      
+    }
+  } */
 }
 </script>
 

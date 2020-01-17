@@ -1,11 +1,92 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>The time is</h1>
-    <div id="clock">
-      <span>{{hours}}:</span>
-      <span>{{minutes}}:</span>
-      <span>{{seconds}}</span>
-    </div>
+    <h1>Welcome to the ultimate hedgehog quiz!</h1>
+    <h2>If you get stuck, hover over the question for a hint.</h2>
+
+    <template v-if="quiz.question == 0">
+      <button v-on:click="next">Start Quiz</button>
+    </template>
+
+    <template v-if="quiz.question == 1">
+      <div v-bind:title="quiz.Q1.hint">{{ quiz.Q1.question }}</div>
+      <div>
+        <input type="radio" id="A1" value=0 v-model="quiz.answer">
+        <label for="A1">{{ quiz.Q1.option[0] }}</label>
+        <br>
+        <input type="radio" id="B1" value=1 v-model="quiz.answer">
+        <label for="B1">{{ quiz.Q1.option[1] }}</label>
+        <br>
+        <input type="radio" id="C1" value=2 v-model="quiz.answer">
+        <label for="C1">{{ quiz.Q1.option[2] }}</label>
+        <br>
+        <input type="radio" id="D1" value=3 v-model="quiz.answer">
+        <label for="D1">{{ quiz.Q1.option[3] }}</label>
+      </div>
+      <button v-on:click="next">Next question</button>
+    </template>
+
+    <template v-if="quiz.question == 2">
+      <div v-bind:title="quiz.Q2.hint">{{ quiz.Q2.question }}</div>
+      <div>
+        <input type="radio" id="A2" value=0 v-model="quiz.answer">
+        <label for="A2">{{ quiz.Q2.option[0] }}</label>
+        <br>
+        <input type="radio" id="B2" value=1 v-model="quiz.answer">
+        <label for="B2">{{ quiz.Q2.option[1] }}</label>
+        <br>
+        <input type="radio" id="C2" value=2 v-model="quiz.answer">
+        <label for="C2">{{ quiz.Q2.option[2] }}</label>
+        <br>
+        <input type="radio" id="D2" value=3 v-model="quiz.answer">
+        <label for="D2">{{ quiz.Q2.option[3] }}</label>
+      </div>
+      <button v-on:click="next">Next question</button>
+    </template>
+
+    <template v-if="quiz.question == 3">
+      <div v-bind:title="quiz.Q3.hint">{{ quiz.Q3.question }}</div>
+      <div>
+        <input type="radio" id="A3" value=0 v-model="quiz.answer">
+        <label for="A3">{{ quiz.Q3.option[0] }}</label>
+        <br>
+        <input type="radio" id="B3" value=1 v-model="quiz.answer">
+        <label for="B3">{{ quiz.Q3.option[1] }}</label>
+        <br>
+        <input type="radio" id="C3" value=2 v-model="quiz.answer">
+        <label for="C3">{{ quiz.Q3.option[2] }}</label>
+        <br>
+        <input type="radio" id="D3" value=3 v-model="quiz.answer">
+        <label for="D3">{{ quiz.Q3.option[3] }}</label>
+      </div>
+      <button v-on:click="next">Next question</button>
+    </template>
+
+    <template v-if="quiz.question == 4">
+      <div v-bind:title="quiz.Q4.hint">{{ quiz.Q4.question }}</div>
+      <div>
+        <input type="radio" id="A4" value=0 v-model="quiz.answer">
+        <label for="A4">{{ quiz.Q4.option[0] }}</label>
+        <br>
+        <input type="radio" id="B4" value=1 v-model="quiz.answer">
+        <label for="B4">{{ quiz.Q4.option[1] }}</label>
+        <br>
+        <input type="radio" id="C4" value=2 v-model="quiz.answer">
+        <label for="C4">{{ quiz.Q4.option[2] }}</label>
+        <br>
+        <input type="radio" id="D4" value=3 v-model="quiz.answer">
+        <label for="D4">{{ quiz.Q4.option[3] }}</label>
+      </div>
+      <button v-on:click="next">Next question</button>
+    </template>
+    
+    <template v-if="quiz.question == 5">
+      <div>
+        <h3>You scored {{quiz.score}} out of 4</h3>
+        <h3>{{ quiz.result[quiz.score] }}</h3>
+      </div>
+      <button v-on:click="reset">Restart Quiz</button>
+    </template>
+
   </div>
 </template>
 
@@ -18,49 +99,51 @@ export default {
       quiz: {
         Q1: {
           question: "How many feet do hedgehogs have?",
-          options: [
+          option: [
             "2",
             "4",
             "6",
             "8"
           ],
           hint: "Hedgehogs have more than 3 feet but less than 5!",
-          answer: 2,
+          answer: 1
         },
         Q2: {
           question: "What are baby hedgehogs called?",
-          options: [
+          option: [
             "A kitten",
             "A caltrop",
             "A hoglet",
             "An urchin"
           ],
           hint: "A spiky sea creature shares this name!",
-          answer: 4
+          answer: 3
         },
         Q3: {
           question: "What shape will a threatened hedgehog adopt?",
-          options: [
+          option: [
             "A ball",
             "A cube",
             "A tetrahedron",
             "A cone"
           ],
           hint: "They have to be careful not to roll away!",
-          answer: 1
+          answer: 0
         },
         Q4: {
           question: "What is the name for a group of hedgehogs?",
-          options: [
+          option: [
             "A pincushion",
             "An array",
             "A prickle",
             "An army"
           ],
-          hint: "A programing object[] shares this name!",
-          answer: 2
+          hint: "A programing object [ ] shares this name!",
+          answer: 1
         },
-        score = 0,
+        question: 0,
+        answer: -1,
+        score: 0,
         result: [
           "I don't think you know what a hedgehog is!",
           "I find your lack of hedgehog knowledge disturbing.",
@@ -71,21 +154,35 @@ export default {
       }
     };
   },
-
+/* 
   mounted() {
     this.updateTime();
     setInterval(this.updateTime, 1000);
-  },
+  }, */
 
   methods: {
-    updateTime() {
-      let date = new Date();
-      let time = date.toLocaleString();
-      this.hours = time.slice(12,14);
-      this.minutes = time.slice(15,17);
-      this.seconds = time.slice(18);
-      return;
-    }
+    answerCorrect() {
+      switch ( this.quiz.question ) {
+        case "1": if ( this.quiz.answer == this.quiz.Q1.answer) return; break;
+        case "2": if ( this.quiz.answer == this.quiz.Q2.answer) return; break;
+        case "3": if ( this.quiz.answer == this.quiz.Q3.answer) return; break;
+        case "4": if ( this.quiz.answer == this.quiz.Q4.answer) return; break;
+        default: return false;
+      }
+      return false;
+    },
+
+    next: function() {
+      if ( this.answerCorrect() ) this.quiz.score++;
+      this.quiz.answer = -1;
+      this.quiz.question++;
+    },
+
+    reset: function() {
+      this.quiz.score = 0;
+      this.quiz.answer = -1;
+      this.quiz.question = 1;
+    },
   },
 };
 </script>

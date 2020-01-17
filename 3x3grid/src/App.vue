@@ -2,10 +2,9 @@
   <div id="app">
     <div class="columns is-tablet">
       <box1/>
-      <box1/>
+      <box2/>
       <box1/>
       <!--
-      <box2/>
       <box3/> -->
     </div>
     <div class="columns is-tablet">
@@ -23,9 +22,6 @@
       <box5/>
       <box6/> -->
     </div>
-
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-
     
     <!-- Will have form of:
     <box 1> (digital clock)
@@ -42,14 +38,14 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import Box1 from './components/Box1-clock.vue'
+import Box2 from './components/Box2-login.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    Box1          //Digital clock
+    Box1,   //Digital clock
+    Box2    //Login screen
   }
 }
 </script>

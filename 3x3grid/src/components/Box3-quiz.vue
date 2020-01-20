@@ -96,6 +96,7 @@ export default {
 
   data() {
     return{
+      audio: {},
       quiz: {
         Q1: {
           question: "How many feet do hedgehogs have?",
@@ -156,8 +157,7 @@ export default {
   },
 
   methods: {
-    answerCorrect() {
-      console.log(`entering switch with value ${this.quiz.question}`);
+    answerCorrect() { //Boolian function to check if an answer is correct
       switch ( this.quiz.question ) {
         case 1: if ( this.quiz.answer == this.quiz.Q1.answer) return true; break;
         case 2: if ( this.quiz.answer == this.quiz.Q2.answer) return true; break;
@@ -168,17 +168,22 @@ export default {
       return false;
     },
 
-    next: function() {
+    next: function() {  //Update score and proceed to next question
       if ( this.answerCorrect() ) this.quiz.score++;
+      if ( this.quiz.score >= 4 ) this.audio.applause.play();
       this.quiz.answer = -1;
       this.quiz.question++;
     },
 
-    reset: function() {
+    reset: function() { //Reset quiz variables
       this.quiz.score = 0;
       this.quiz.answer = -1;
       this.quiz.question = 1;
     },
+  },
+
+  mounted() { //Load audio file from "assets" into a variable
+    this.audio.applause = new Audio(require("../assets/audio/applause.mp3"));
   },
 };
 </script>

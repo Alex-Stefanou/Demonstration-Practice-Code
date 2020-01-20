@@ -154,19 +154,15 @@ export default {
       }
     };
   },
-/* 
-  mounted() {
-    this.updateTime();
-    setInterval(this.updateTime, 1000);
-  }, */
 
   methods: {
     answerCorrect() {
+      console.log(`entering switch with value ${this.quiz.question}`);
       switch ( this.quiz.question ) {
-        case "1": if ( this.quiz.answer == this.quiz.Q1.answer) return; break;
-        case "2": if ( this.quiz.answer == this.quiz.Q2.answer) return; break;
-        case "3": if ( this.quiz.answer == this.quiz.Q3.answer) return; break;
-        case "4": if ( this.quiz.answer == this.quiz.Q4.answer) return; break;
+        case 1: if ( this.quiz.answer == this.quiz.Q1.answer) return true; break;
+        case 2: if ( this.quiz.answer == this.quiz.Q2.answer) return true; break;
+        case 3: if ( this.quiz.answer == this.quiz.Q3.answer) return true; break;
+        case 4: if ( this.quiz.answer == this.quiz.Q4.answer) return true; break;
         default: return false;
       }
       return false;

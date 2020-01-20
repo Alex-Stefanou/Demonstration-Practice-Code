@@ -23,7 +23,7 @@ export default {
         password: "",
         status: -1,
       },
-      userData: {
+      userData: { //"account data" stored here
         admin: "admin",
         alex: "Hunter2"
       },

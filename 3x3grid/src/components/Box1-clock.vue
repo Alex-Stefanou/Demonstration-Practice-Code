@@ -21,7 +21,7 @@ export default {
     };
   },
 
-  mounted() {
+  mounted() { //on initialisation, update time every second
     this.updateTime();
     setInterval(this.updateTime, 1000);
   },

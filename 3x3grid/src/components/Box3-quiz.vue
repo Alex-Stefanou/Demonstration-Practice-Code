@@ -156,6 +156,10 @@ export default {
     };
   },
 
+  mounted() { //Load audio file from "assets" into a variable
+    this.audio.applause = new Audio(require("../assets/audio/applause.mp3"));
+  },
+
   methods: {
     answerCorrect() { //Boolian function to check if an answer is correct
       switch ( this.quiz.question ) {
@@ -180,10 +184,6 @@ export default {
       this.quiz.answer = -1;
       this.quiz.question = 1;
     },
-  },
-
-  mounted() { //Load audio file from "assets" into a variable
-    this.audio.applause = new Audio(require("../assets/audio/applause.mp3"));
   },
 };
 </script>

@@ -97,6 +97,7 @@ export default {
   data() {
     return{
       audio: {},
+      
       quiz: {
         Q1: {
           question: "How many feet do hedgehogs have?",

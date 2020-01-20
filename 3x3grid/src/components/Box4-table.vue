@@ -1,10 +1,20 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>The time is</h1>
-    <div id="clock">
-      <span>{{hours}}:</span>
-      <span>{{minutes}}:</span>
-      <span>{{seconds}}</span>
+    <h1>List of users:</h1>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <th>Forename</th>
+          <th>Surname</th>
+          <th>Age</th>
+        </thead>
+        <tbody>
+          <th>John</th>
+          <th>Doe</th>
+          <th>32</th>
+          <th><button>Delete</button></th>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>

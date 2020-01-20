@@ -1,11 +1,34 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>The time is</h1>
-    <div id="clock">
-      <span>{{hours}}:</span>
-      <span>{{minutes}}:</span>
-      <span>{{seconds}}</span>
+
+    <div class="field">
+      <label class="label">Forename</label>
+      <div class="control">
+        <input v-model="tempUser.forename" class="input" type="text">
+      </div>
     </div>
+
+    <div class="field">
+      <label class="label">Surname</label>
+      <div class="control">
+        <input v-model="tempUser.surname" class="input" type="text">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Age</label>
+      <div class="control">
+        <input v-model="tempUser.age" class="input" type="text">
+      </div>
+      <p class="help">{{age.message}}</p>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <button v-on:click="submit" class="button">Submit</button>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -15,26 +38,47 @@ export default {
 
   data() {
     return{
-      hours: String,
-      minutes: String,
-      seconds: String,
+      tempUser: {
+        forename: "",
+        surname: "",
+        age: "",
+      },
+      
+      age: {
+        valid: true,
+        message: "",
+      },
     };
   },
 
-  mounted() { //on initialisation, update time every second
-    this.updateTime();
-    setInterval(this.updateTime, 1000);
-  },
-
   methods: {
-    updateTime() {
-      let date = new Date();
-      let time = date.toLocaleString();
-      this.hours = time.slice(12,14);
-      this.minutes = time.slice(15,17);
-      this.seconds = time.slice(18);
-      return;
-    }
+    validateAge() { //basic validation: checks age is a number
+      let digits = (this.tempUser.age.match(/\d/g) || []).length;
+      let length = this.tempUser.age.length;
+      if ( digits == length ) {
+        this.age.valid = true;
+        this.age.message = "";
+      }
+      else {
+        this.age.valid = false;
+        this.age.message = "Please enter age with digits.";
+      }
+    },
+
+    clearForm() { //Resets form variables to initial state
+      this.tempUser.forename = "";
+      this.tempUser.surname = "";
+      this.tempUser.age = "";
+      this.age.valid = true;
+    },
+
+    submit: function() { //Validates and passes data
+      this.validateAge();
+      if( this.age.valid ) {
+        this.$emit("userData", this.tempUser);
+        this.clearForm();
+      }
+    },
   },
 };
 </script>

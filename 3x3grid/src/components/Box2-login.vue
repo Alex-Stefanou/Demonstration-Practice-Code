@@ -1,14 +1,24 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>Sign in:</h1>
-    <div>
-      <input v-model="input.username" type="text" class="input" placeholder="Username">
-      <input v-model="input.password" type="password" class="input" placeholder="Password"  @keyup.enter="login">
+    <div class="field">
+      <label>Sign in:</label>
+
+      <div class="control">
+        <input v-model="input.username" type="text" class="input" placeholder="Username">
+      </div>
+
+      <div class="control">
+        <input v-model="input.password" type="password" class="input" placeholder="Password"  @keyup.enter="login">
+      </div>
+
+      <div class="control">
+        <button v-on:click="login" class="button">Log in</button>
+      </div>
+
+      <span v-if="input.status === 0" class="success">Log in successful</span>
+      <span v-if="input.status === 1">Enter a username and password</span>
+      <span v-if="input.status === 2">Incorrect username or password</span>
     </div>
-    <button v-on:click="login" class="button">Log in</button>
-    <span v-if="input.status === 0" class="success">Log in successful</span>
-    <span v-if="input.status === 1">Enter a username and password</span>
-    <span v-if="input.status === 2">Incorrect username or password</span>
   </div>
 </template>
 
@@ -23,6 +33,7 @@ export default {
         password: "",
         status: -1,
       },
+      
       userData: { //"account data" stored here
         admin: "admin",
         alex: "Hunter2"

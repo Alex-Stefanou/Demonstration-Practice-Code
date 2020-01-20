@@ -6,32 +6,15 @@
       <box3/>
     </div>
     <div class="columns is-tablet">
-      <box1/>
-      <box1/>
-      <box1/>
-      <!--
       <box4/>
       <box5/>
-      <box6/> -->
+      <box1/>
     </div>
     <div class="columns is-tablet">
-      <!--
-      <box4/>
-      <box5/>
-      <box6/> -->
+      <box1/>
+      <box1/>
+      <box1/>
     </div>
-    
-    <!-- Will have form of:
-    <box 1> (digital clock)
-    <box 2> (login form: user & pass + button and success feedback)
-    <box 3> (quiz: 4 multiple choice questions - sound on successful completion) NB check slack starred messages re:sound
-    <box 4> (table of 4 coloumns the last of which deletes row)
-    <box 5> (Submit form to add rows to table of box 4)
-    <box 6> (list of items+price - active items toggleable, active total displayed)
-    <box 7> (list of 9 items (img+title) + search bar which autofilters from first letter)
-    <box 8> (duplicate list of box 7 but instead of search, toggle to display grid of images)
-    <box 9> (magic 8 ball (optional animations))
-    -->
   </div>
 </template>
 
@@ -39,6 +22,8 @@
 import Box1 from './components/Box1-clock.vue'
 import Box2 from './components/Box2-login.vue'
 import Box3 from './components/Box3-quiz.vue'
+import Box4 from './components/Box4-table.vue'
+import Box5 from './components/Box5-form.vue'
 
 export default {
   name: 'app',
@@ -47,6 +32,8 @@ export default {
     Box1,   //Digital clock
     Box2,   //Login screen
     Box3,   //Quiz
+    Box4,   //Table
+    Box5,   //Submit form
   },
 /* 
   data() {

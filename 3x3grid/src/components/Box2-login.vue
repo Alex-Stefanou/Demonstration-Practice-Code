@@ -3,7 +3,7 @@
     <h1>Sign in:</h1>
     <div>
       <input v-model="input.username" type="text" class="input" placeholder="Username">
-      <input v-model="input.password" type="password" class="input" placeholder="Password">
+      <input v-model="input.password" type="password" class="input" placeholder="Password"  @keyup.enter="login">
     </div>
     <button v-on:click="login" class="button">Log in</button>
     <span v-if="input.status === 0" class="success">Log in successful</span>

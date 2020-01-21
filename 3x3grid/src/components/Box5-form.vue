@@ -76,7 +76,7 @@ export default {
       this.validateAge();
       if( this.age.valid ) {
         this.$emit("userData", this.tempUser);
-        //this.clearForm();
+        this.clearForm();
       }
     },
   },

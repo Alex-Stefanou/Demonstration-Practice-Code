@@ -8,7 +8,7 @@
     <div class="columns is-tablet">
       <box4 :tempUser="tempUser"/>
       <box5 @userData="passUser"/>
-      <box1/>
+      <box6/>
     </div>
     <div class="columns is-tablet">
       <box1/>

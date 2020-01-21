@@ -1,19 +1,29 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>List of users:</h1>
+    <h1>Order form:</h1>
     <div class="table-container">
       <table class="table">
+
         <thead>
-          <th>Forename</th>
-          <th>Surname</th>
-          <th>Age</th>
+          <th></th>
+          <th>Item</th>
+          <th>Price</th>
         </thead>
+
+        <tfoot>
+          <th></th>
+          <th></th>
+          <th>{{ Total }}</th>
+        </tfoot>
+
         <tbody>
-          <th>John</th>
-          <th>Doe</th>
-          <th>32</th>
-          <th><button>Delete</button></th>
+          <tr v-for="(Item,i) in List" :key="i">
+            <td><input type="checkbox" v-model="Item.active"></td>
+            <td>{{ Item.name }}</td>
+            <td>{{ Item.price }}</td>
+          </tr>
         </tbody>
+
       </table>
     </div>
   </div>
@@ -23,25 +33,49 @@
 export default {
   name: 'Box6-list',
 
-  props: {
-    tempUser: {type: Object}
-  },
-
   data() {
     return{
-      userList: [],
+      Total: 0,
+      List: [
+        {name: "Apple",       price: 1.40, active: false},
+        {name: "Banana",      price: 0.80, active: false},
+        {name: "Cherries",    price: 3.20, active: false},
+        {name: "Grapes",      price: 1.80, active: false},
+        {name: "Kiwi",        price: 0.59, active: false},
+        {name: "Mango",       price: 2.99, active: false},
+        {name: "Strawberries",price: 2.49, active: false},
+        {name: "Watermelon",  price: 4.20, active: false},
+      ],
     };
   },
 
-  watch: {
-    tempUser: function() {
-      this.userList.push(this.tempUser);
+/*   watch: {
+    List: function(){
+      this.sumActive();
     }
   },
 
   methods: {
+    sumActive() {
+      let sum = 0
+      for ( let i = 0; i < this.List.length; i++) {
+        if ( this.List[i].active ) sum += this.List[i].price;
+      }
+      return this.Total = sum;
+    }
+  }, */
 
+  calculate: {
+    total: function(){
+      let sum = 0
+      for ( var i = 0; i < 8; i++) {
+        if ( this.List[i].active ) sum += this.List[i].price;
+      }
+      return this.Total = sum;
+    },
   },
+
+
 };
 </script>
 

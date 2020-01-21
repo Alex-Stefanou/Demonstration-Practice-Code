@@ -35,7 +35,8 @@ export default {
 
   watch: {
     tempUser: function() {
-      this.userList.push(this.tempUser);
+      let userData = [this.tempUser.forename , this.tempUser.surname , this.tempUser.age];
+      this.userList.push(userData);
     }
   },
 

@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'Box4-table',
+  name: 'Box6-list',
 
   props: {
     tempUser: {type: Object}

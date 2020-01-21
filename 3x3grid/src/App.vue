@@ -6,8 +6,8 @@
       <box3/>
     </div>
     <div class="columns is-tablet">
-      <box4/>
-      <box5/>
+      <box4 :tempUser="tempUser"/>
+      <box5 @userData="passUser"/>
       <box1/>
     </div>
     <div class="columns is-tablet">
@@ -24,6 +24,7 @@ import Box2 from './components/Box2-login.vue'
 import Box3 from './components/Box3-quiz.vue'
 import Box4 from './components/Box4-table.vue'
 import Box5 from './components/Box5-form.vue'
+import Box6 from './components/Box6-list.vue'
 
 export default {
   name: 'app',
@@ -34,14 +35,21 @@ export default {
     Box3,   //Quiz
     Box4,   //Table
     Box5,   //Submit form
+    Box6,   //Toggleable item list + running total
   },
-/* 
+
   data() {
     return {
-      
+      tempUser: {}
     }
-  } */
-}
+  },
+
+  methods: {
+    passUser (userData) {
+      this.tempUser = userData;
+    }
+  },
+};
 </script>
 
 <style>

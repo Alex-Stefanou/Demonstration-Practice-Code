@@ -26,14 +26,14 @@
 export default {
   name: 'Box2-login',
 
-  data: function() {
+  data() {
     return{
       input: {
         username: "",
         password: "",
         status: -1,
       },
-      
+
       userData: { //"account data" stored here
         admin: "admin",
         alex: "Hunter2"

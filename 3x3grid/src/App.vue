@@ -11,7 +11,7 @@
       <box6/>
     </div>
     <div class="columns is-tablet">
-      <box1/>
+      <box7/>
       <box1/>
       <box1/>
     </div>
@@ -25,6 +25,7 @@ import Box3 from './components/Box3-quiz.vue'
 import Box4 from './components/Box4-table.vue'
 import Box5 from './components/Box5-form.vue'
 import Box6 from './components/Box6-list.vue'
+import Box7 from './components/Box7-search.vue'
 
 export default {
   name: 'app',
@@ -34,8 +35,9 @@ export default {
     Box2,   //Login screen
     Box3,   //Quiz
     Box4,   //Table
-    Box5,   //Submit form
+    Box5,   //Submit form to Box 4
     Box6,   //Toggleable item list + running total
+    Box7,   //Search a list in real time
   },
 
   data() {

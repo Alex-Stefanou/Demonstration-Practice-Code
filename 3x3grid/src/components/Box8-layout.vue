@@ -1,23 +1,31 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>Search the Solar System!</h1>
-    <div class="table-container">
+    <h1>The Solar System!</h1>
+    <div>
+      <template v-if="grid">Grid</template>
+      <template v-if="!grid">List</template>
+      <input type="checkbox" v-model="grid"/>
+    </div>
+
+    <div v-if="grid">
+      <div id="grid">
+        <div v-for="(Planet,i) in Planets" :key="i">
+          <img :src="Planet.img" class="grid-item"/>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="!grid" class="table-container">
       <table class="table">
-
-        <thead>
-          <th></th>
-          <th><input v-model="search" type="text"></th>
-        </thead>
-
         <tbody>
-          <tr v-for="(Planet,i) in Display" :key="i">
+          <tr v-for="(Planet,i) in Planets" :key="i">
             <td><img :src="Planet.img"/></td>
             <td>{{ Planet.name }}</td>
           </tr>
         </tbody>
-
       </table>
     </div>
+
   </div>
 </template>
 
@@ -27,7 +35,7 @@ export default {
 
   data() {
     return{
-      search: "",
+      grid: true,
       Planets: [
         {name: "Mercury"},
         {name: "Venus"},   
@@ -39,7 +47,6 @@ export default {
         {name: "Neptune"},
         {name: "Pluto"}
       ],
-      Display: [],
     };
   },
 
@@ -53,10 +60,8 @@ export default {
     this.Planets[6].img = require("../assets/planets/uranus.png");
     this.Planets[7].img = require("../assets/planets/neptune.png");
     this.Planets[8].img = require("../assets/planets/pluto.png");
-
-    this.Display = this.Planets;
   },
-
+/* 
   watch: {
     search: function() {
       this.updateDisplay();
@@ -74,13 +79,19 @@ export default {
       }
     },
   },
-
+ */
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-/*Local styling here*/
+#grid {
+  display: grid;
+  grid-template-rows: repeat(3, 10vh);
+  grid-row-gap: 1em;
+	grid-template-columns: repeat(3, 10vw);
+  grid-column-gap: 1em;
+}
 
 </style>

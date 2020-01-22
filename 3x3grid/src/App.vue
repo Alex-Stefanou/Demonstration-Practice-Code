@@ -6,8 +6,8 @@
       <box3/>
     </div>
     <div class="columns is-tablet">
-      <box4 :tempUser="tempUser"/>
-      <box5 @userData="passUser"/>
+      <box4 :importUser="tempUser"/>
+      <box5 @exportUser="updateUser"/>
       <box6/>
     </div>
     <div class="columns is-tablet">
@@ -44,13 +44,13 @@ export default {
 
   data() {
     return {
-      tempUser: {}
+      tempUser: ""
     }
   },
 
   methods: {
-    passUser (userData) {
-      this.tempUser = userData;
+    updateUser (data) {
+      this.tempUser = data;
     }
   },
 };

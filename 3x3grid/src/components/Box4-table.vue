@@ -3,17 +3,22 @@
     <h1>List of users:</h1>
     <div class="table-container">
       <table class="table">
+
         <thead>
           <th>Forename</th>
           <th>Surname</th>
           <th>Age</th>
         </thead>
+
         <tbody>
-          <th>John</th>
-          <th>Doe</th>
-          <th>32</th>
-          <th><button>Delete</button></th>
+          <tr v-for="(User,i) in userList" :key="i">
+            <td>{{ User.forename }}</td>
+            <td>{{ User.surname }}</td>
+            <td>{{ User.age }}</td>
+            <td><button v-on:click="deleteRow(i)">delete</button></td>
+          </tr>
         </tbody>
+
       </table>
     </div>
   </div>
@@ -24,7 +29,7 @@ export default {
   name: 'Box4-table',
 
   props: {
-    tempUser: {type: Object}
+    importUser: {type: String}
   },
 
   data() {
@@ -34,14 +39,15 @@ export default {
   },
 
   watch: {
-    tempUser: function() {
-      let userData = [this.tempUser.forename , this.tempUser.surname , this.tempUser.age];
-      this.userList.push(userData);
+    importUser: function() {
+      this.userList.push(JSON.parse(this.importUser));
     }
   },
 
   methods: {
-
+    deleteRow (i) {
+      this.userList.splice(i,1);
+    }
   },
 };
 </script>

@@ -97,7 +97,7 @@ export default {
   data() {
     return{
       audio: {},
-      
+
       quiz: {
         Q1: {
           question: "How many feet do hedgehogs have?",
@@ -111,11 +111,11 @@ export default {
           answer: 1
         },
         Q2: {
-          question: "What are baby hedgehogs called?",
+          question: "What did baby hedgehogs used to be called?",
           option: [
             "A kitten",
             "A caltrop",
-            "A hoglet",
+            "A hedgelet",
             "An urchin"
           ],
           hint: "A spiky sea creature shares this name!",

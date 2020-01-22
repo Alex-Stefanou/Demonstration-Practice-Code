@@ -18,7 +18,7 @@
     <div class="field">
       <label class="label">Age</label>
       <div class="control">
-        <input v-model="tempUser.age" class="input" type="text">
+        <input v-model="tempUser.age" class="input" type="text" @keyup.enter="submit">
       </div>
       <p class="help">{{age.message}}</p>
     </div>
@@ -75,7 +75,7 @@ export default {
     submit: function() { //Validates and passes data
       this.validateAge();
       if( this.age.valid ) {
-        this.$emit("userData", this.tempUser);
+        this.$emit("exportUser", JSON.stringify(this.tempUser));
         this.clearForm();
       }
     },

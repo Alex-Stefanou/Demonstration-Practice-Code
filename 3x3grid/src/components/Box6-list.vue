@@ -12,15 +12,15 @@
 
         <tfoot>
           <th></th>
-          <th></th>
-          <th>{{ Total }}</th>
+          <th>Total:</th>
+          <th>£ {{ total }}</th>
         </tfoot>
 
         <tbody>
           <tr v-for="(Item,i) in List" :key="i">
             <td><input type="checkbox" v-model="Item.active"></td>
             <td>{{ Item.name }}</td>
-            <td>{{ Item.price }}</td>
+            <td>£ {{ Item.price.toFixed(2) }}</td>
           </tr>
         </tbody>
 
@@ -35,7 +35,6 @@ export default {
 
   data() {
     return{
-      Total: 0,
       List: [
         {name: "Apple",       price: 1.40, active: false},
         {name: "Banana",      price: 0.80, active: false},
@@ -49,33 +48,16 @@ export default {
     };
   },
 
-/*   watch: {
-    List: function(){
-      this.sumActive();
-    }
-  },
-
-  methods: {
-    sumActive() {
-      let sum = 0
-      for ( let i = 0; i < this.List.length; i++) {
-        if ( this.List[i].active ) sum += this.List[i].price;
-      }
-      return this.Total = sum;
-    }
-  }, */
-
-  calculate: {
+  computed: {
     total: function(){
       let sum = 0
       for ( var i = 0; i < 8; i++) {
         if ( this.List[i].active ) sum += this.List[i].price;
       }
-      return this.Total = sum;
+      let displaySum = sum.toFixed(2);
+      return displaySum;
     },
   },
-
-
 };
 </script>
 

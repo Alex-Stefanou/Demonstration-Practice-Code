@@ -44,15 +44,15 @@ export default {
   },
 
   mounted() { //Load images into variables
-    this.Planets[0].img = new Image(require("../assets/planets/mercury.png"));
-    this.Planets[1].img = new Image(require("../assets/planets/venus.png"));
-    this.Planets[2].img = new Image(require("../assets/planets/earth.png"));
-    this.Planets[3].img = new Image(require("../assets/planets/mars.png"));
-    this.Planets[4].img = new Image(require("../assets/planets/jupiter.png"));
-    this.Planets[5].img = new Image(require("../assets/planets/saturn.png"));
-    this.Planets[6].img = new Image(require("../assets/planets/uranus.png"));
-    this.Planets[7].img = new Image(require("../assets/planets/neptune.png"));
-    this.Planets[8].img = new Image(require("../assets/planets/pluto.png"));
+    this.Planets[0].img = require("../assets/planets/mercury.png");
+    this.Planets[1].img = require("../assets/planets/venus.png");
+    this.Planets[2].img = require("../assets/planets/earth.png");
+    this.Planets[3].img = require("../assets/planets/mars.png");
+    this.Planets[4].img = require("../assets/planets/jupiter.png");
+    this.Planets[5].img = require("../assets/planets/saturn.png");
+    this.Planets[6].img = require("../assets/planets/uranus.png");
+    this.Planets[7].img = require("../assets/planets/neptune.png");
+    this.Planets[8].img = require("../assets/planets/pluto.png");
 
     this.Display = this.Planets;
   },

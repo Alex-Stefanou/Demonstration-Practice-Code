@@ -64,10 +64,10 @@ export default {
 html, body {
   background-color: darkslategray;
   margin-top: 0.4em;
+  line-height: 1;
 }
 
 h1 {
-  line-height: 1;
   padding-bottom: 0.2em;
   font-size: 1.2em;
   font-weight: bold;
@@ -80,6 +80,7 @@ h1 {
 
   box-sizing: 100%;
   margin: 1em;
+  margin-bottom: 0em;
 
   text-align: center;
   color: black;

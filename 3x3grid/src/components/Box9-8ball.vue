@@ -1,8 +1,8 @@
 <template>
-  <div class="column is-one-third-tablet">
+  <div v-on:click="shake" id="magic8ball" class="column is-one-third-tablet">
     <h1>Click to shake the Magic 8-ball!</h1>
-    <div v-on:click="shake" id="magic8ball">
-      <div>{{ output }}</div>
+    <div id="output">
+      {{ output }}
     </div>
   </div>
 </template>
@@ -55,12 +55,32 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+h1 {
+  color: #14ffec;
+}
+
 #magic8ball {
-  width: 100%;
-  height: 80%;
   background-image: url("../assets/magic8ball.png");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-position: center;
+  background-size: 60%;
+}
+
+#output {
+  width: 25%;
+  height: 5em;
+  margin: auto;
+  padding-top: 1.2em;
+  /* padding-bottom: 1em; */
+  border-radius: 2em;
+  background-color: white;
+  color: #0d7377;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.column {
+  background-color: #323232;
 }
 
 </style>

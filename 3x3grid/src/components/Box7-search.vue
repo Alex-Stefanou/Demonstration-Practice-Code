@@ -2,21 +2,20 @@
   <div class="column is-one-third-tablet">
     <h1>Search the Solar System!</h1>
     <div class="table-container">
-      <table class="table">
 
-        <thead>
-          <th></th>
-          <th><input v-model="search" type="text"></th>
-        </thead>
+      <input v-model="search" type="text">
+
+      <table class="table">
 
         <tbody>
           <tr v-for="(Planet,i) in Display" :key="i">
-            <td><img :src="Planet.img"/></td>
+            <td><img :src="Planet.img" class="image"/></td>
             <td>{{ Planet.name }}</td>
           </tr>
         </tbody>
 
       </table>
+
     </div>
   </div>
 </template>
@@ -81,6 +80,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-/*Local styling here*/
+.image {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  line-height: 1;
+}
 
 </style>

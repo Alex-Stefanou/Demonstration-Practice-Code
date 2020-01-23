@@ -14,7 +14,7 @@
           <tr v-for="(User,i) in userList" :key="i">
             <td>{{ User.forename }}</td>
             <td>{{ User.surname }}</td>
-            <td>{{ User.age }}</td>
+            <td class="age">{{ User.age }}</td>
             <td><button v-on:click="deleteRow(i)">delete</button></td>
           </tr>
         </tbody>
@@ -55,6 +55,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-/*Local styling here*/
+.age {
+  text-align: right !important;
+}
+
+.table {
+  width: 100%;
+  line-height: 1;
+}
 
 </style>

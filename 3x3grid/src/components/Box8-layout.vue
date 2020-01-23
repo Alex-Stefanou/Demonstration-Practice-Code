@@ -10,8 +10,8 @@
 
     <div v-if="grid">
       <div id="grid">
-        <div v-for="(Planet,i) in Planets" :key="i">
-          <img :src="Planet.img" class="grid-item"/>
+        <div v-for="(Planet,i) in Planets" :key="i" class="grid-item">
+          <img :src="Planet.img"/>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <table class="table">
         <tbody>
           <tr v-for="(Planet,i) in Planets" :key="i">
-            <td><img :src="Planet.img"/></td>
+            <td><img :src="Planet.img" class="image"/></td>
             <td>{{ Planet.name }}</td>
           </tr>
         </tbody>
@@ -70,10 +70,25 @@ export default {
 
 #grid {
   display: grid;
-  grid-template-rows: repeat(3, 10vh);
-  grid-row-gap: 1em;
-	grid-template-columns: repeat(3, 10vw);
-  grid-column-gap: 1em;
+  grid-template-rows: repeat(3, 33%);
+  grid-row-gap: 0.4em;
+	grid-template-columns: repeat(3, 33%);
+  grid-column-gap: 0.4em;
+  justify-content: center;
+}
+
+.grid-item {
+  width: 100%;
+  align-self: center;
+}
+
+.image {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  line-height: 1;
 }
 
 </style>

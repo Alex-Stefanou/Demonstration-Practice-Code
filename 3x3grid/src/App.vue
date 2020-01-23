@@ -61,18 +61,44 @@ export default {
 <style>
 @import "https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css";
 
+html, body {
+  background-color: darkslategray;
+  margin-top: 0.4em;
+}
+
+h1 {
+  line-height: 1;
+  padding-bottom: 0.2em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+  box-sizing: 100%;
   margin: 1em;
+
+  text-align: center;
+  color: black;
+}
+
+.columns {
+  margin-left: -6px;
+  margin-right: 6px;
 }
 
 .column {
-  background-color: bisque;
-  border: brown solid 4px;
+  height: 32vh;
   margin: 2px;
+
+  overflow: auto;
+
+  background-color: bisque;
+  border: black solid 4px;
 }
+
+
 </style>

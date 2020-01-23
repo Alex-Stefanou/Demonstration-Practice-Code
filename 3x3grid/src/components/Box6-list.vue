@@ -20,7 +20,7 @@
           <tr v-for="(Item,i) in List" :key="i">
             <td><input type="checkbox" v-model="Item.active"></td>
             <td>{{ Item.name }}</td>
-            <td>£ {{ Item.price.toFixed(2) }}</td>
+            <td class="price">£ {{ Item.price.toFixed(2) }}</td>
           </tr>
         </tbody>
 
@@ -64,6 +64,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-/*Local styling here*/
+.price {
+  text-align: right;
+}
+/* 
+.table-container {
+  height: 100%;
+  overflow-y: auto;
+} */
 
 </style>

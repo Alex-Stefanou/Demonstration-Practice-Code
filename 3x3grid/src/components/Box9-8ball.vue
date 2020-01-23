@@ -1,9 +1,7 @@
 <template>
   <div v-on:click="shake" id="magic8ball" class="column is-one-third-tablet">
     <h1>Click to shake the Magic 8-ball!</h1>
-    <div id="output">
-      {{ output }}
-    </div>
+    <div id="output">{{ output }}</div>
   </div>
 </template>
 
@@ -68,12 +66,8 @@ h1 {
 
 #output {
   width: 25%;
-  height: 5em;
   margin: auto;
-  padding-top: 1.2em;
-  /* padding-bottom: 1em; */
-  border-radius: 2em;
-  background-color: white;
+  padding-top: 8vh;
   color: #0d7377;
   font-size: 0.9em;
   font-weight: bold;
@@ -81,6 +75,7 @@ h1 {
 
 .column {
   background-color: #323232;
+  border-color: #212121;
 }
 
 </style>

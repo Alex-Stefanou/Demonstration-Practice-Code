@@ -1,39 +1,52 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>The time is</h1>
-    <div id="clock">
-      <span>{{hours}}:</span>
-      <span>{{minutes}}:</span>
-      <span>{{seconds}}</span>
+    <h1>Click to shake the Magic 8-ball!</h1>
+    <div v-on:click="shake">
+      <div>{{ output }}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Box1-clock',
+  name: 'Box9-8ball',
 
   data() {
     return{
-      hours: String,
-      minutes: String,
-      seconds: String,
+      result: [
+        "It is certain.",
+        "It is decidedly so.",
+        "Without a doubt.",
+        "Yes - definitely.",
+        "You may rely on it.",
+        "As I see it, yes.",
+        "Most likely.",
+        "Outlook good.",
+        "Yes.",
+        "Signs point to yes.",
+        "Reply hazy, try again.",
+        "Ask again later.",
+        "Better not tell you now.",
+        "Cannot predict now.",
+        "Concentrate and ask again.",
+        "Don't count on it.",
+        "My reply is no.",
+        "My sources say no.",
+        "Outlook not so good.",
+        "Very doubtful."
+      ],
+      output: "Click me to shake!",
+      img8ball: "",
     };
   },
 
-  mounted() { //on initialisation, update time every second
-    this.updateTime();
-    setInterval(this.updateTime, 1000);
+  mounted() { //Load images
+    this.img8ball = require("../assets/magic8ball.png");
   },
 
   methods: {
-    updateTime() {
-      let date = new Date();
-      let time = date.toLocaleString();
-      this.hours = time.slice(12,14);
-      this.minutes = time.slice(15,17);
-      this.seconds = time.slice(18);
-      return;
+    shake: function() { //Generate random number 0-19, output result
+      this.output = this.result[Math.floor(Math.random()*20)];
     }
   },
 };

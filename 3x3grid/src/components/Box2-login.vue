@@ -13,11 +13,11 @@
 
       <div class="control">
         <button v-on:click="login" class="button">Log in</button>
+        <span v-if="input.status === 0" class="success">Log in successful</span>
+        <span v-if="input.status === 1" class="failure">Enter a username and password</span>
+        <span v-if="input.status === 2" class="failure">Incorrect username or password</span>
       </div>
 
-      <span v-if="input.status === 0" class="success">Log in successful</span>
-      <span v-if="input.status === 1">Enter a username and password</span>
-      <span v-if="input.status === 2">Incorrect username or password</span>
     </div>
   </div>
 </template>
@@ -60,8 +60,39 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+label {
+  margin-bottom: 1em;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #ff2e63;
+}
+
+.button {
+  background-color: #eaeaea;
+  color: #ff2e63;
+}
+
 .column {
   text-align: left;
+  border-color: #252a34;
+  background-color: #08d9d6;
+}
+
+.failure, .success {
+  padding: 0.5em;
+  line-height: 2.2em;
+}
+
+.failure {
+  background-color: red;
+}
+
+.input {
+  margin-bottom: 0.4em;
+  border: #252a34 solid 2px;
+  background-color: #eaeaea;
+  color: black;
 }
 
 .success {

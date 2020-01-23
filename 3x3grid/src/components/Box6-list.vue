@@ -12,8 +12,8 @@
 
         <tfoot>
           <th></th>
-          <th>Total:</th>
-          <th>£ {{ total }}</th>
+          <th class="price">Total:</th>
+          <th class="price">£ {{ total }}</th>
         </tfoot>
 
         <tbody>
@@ -51,7 +51,7 @@ export default {
   computed: {
     total: function(){
       let sum = 0
-      for ( var i = 0; i < 8; i++) {
+      for ( var i = 0; i < this.List.length; i++) {
         if ( this.List[i].active ) sum += this.List[i].price;
       }
       let displaySum = sum.toFixed(2);
@@ -65,12 +65,12 @@ export default {
 <style scoped>
 
 .price {
-  text-align: right;
+  text-align: right !important;
 }
-/* 
-.table-container {
-  height: 100%;
-  overflow-y: auto;
-} */
+
+.table {
+  width: 100%;
+  line-height: 1;
+}
 
 </style>

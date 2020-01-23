@@ -2,6 +2,7 @@
   <div class="column is-one-third-tablet">
     <h1>The Solar System!</h1>
     <div>
+      Layout:
       <template v-if="grid">Grid</template>
       <template v-if="!grid">List</template>
       <input type="checkbox" v-model="grid"/>
@@ -61,25 +62,6 @@ export default {
     this.Planets[7].img = require("../assets/planets/neptune.png");
     this.Planets[8].img = require("../assets/planets/pluto.png");
   },
-/* 
-  watch: {
-    search: function() {
-      this.updateDisplay();
-    }
-  },
-
-  methods: {
-    updateDisplay() {
-      this.Display = []
-      let L = this.search.length;
-      for ( let i = 0; i < this.Planets.length; i++) {
-        if ( this.Planets[i].name.substring(0,L).toLowerCase() == this.search.toLowerCase() ) {
-          this.Display.push(this.Planets[i]);
-        }
-      }
-    },
-  },
- */
 };
 </script>
 

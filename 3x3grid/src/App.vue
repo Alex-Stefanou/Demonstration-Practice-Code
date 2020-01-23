@@ -13,7 +13,7 @@
     <div class="columns is-tablet">
       <box7/>
       <box8/>
-      <box1/>
+      <box9/>
     </div>
   </div>
 </template>
@@ -27,6 +27,7 @@ import Box5 from './components/Box5-form.vue'
 import Box6 from './components/Box6-list.vue'
 import Box7 from './components/Box7-search.vue'
 import Box8 from './components/Box8-layout.vue'
+import Box9 from './components/Box9-8ball.vue'
 
 export default {
   name: 'app',
@@ -40,6 +41,7 @@ export default {
     Box6,   //Toggleable item list + running total
     Box7,   //Search a list in real time
     Box8,   //Toggleable layout for list from Box 7
+    Box9,   //Magic 8-ball
   },
 
   data() {

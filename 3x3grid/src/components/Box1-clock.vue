@@ -1,10 +1,10 @@
 <template>
   <div class="column is-one-third-tablet">
     <h1>The time is</h1>
-    <div id="clock">
+    <div class="clock">
       <span>{{hours}}:</span>
-      <span>{{minutes}}:</span>
-      <span>{{seconds}}</span>
+      <span>{{minutes}}</span>
+      <span id="seconds">{{seconds}}</span>
     </div>
   </div>
 </template>
@@ -39,9 +39,29 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-/*Local styling here*/
+h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #6a2c70
+}
+
+#seconds {
+  font-size: 0.4em;
+}
+
+.clock {
+  padding-top: 5vh;
+  padding-left: 0.5em;
+  font-size: 2.5em;
+  font-weight: 800;
+  color: #b83b5e;
+}
+
+.column {
+  border-color: #f08a5d;
+  background-image: linear-gradient(to top left, #f08a5d, #f9ed69 40%);
+}
 
 </style>

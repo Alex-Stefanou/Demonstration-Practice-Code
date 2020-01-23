@@ -98,7 +98,8 @@ h1 {
   overflow: auto;
 
   background-color: bisque;
-  border: black solid 4px;
+  border: black solid 6px;
+  border-radius: 0.5em;
 }
 
 

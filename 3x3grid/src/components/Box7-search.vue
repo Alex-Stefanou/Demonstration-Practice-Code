@@ -3,7 +3,7 @@
     <h1>Search the Solar System!</h1>
     <div class="table-container">
 
-      <input v-model="search" type="text">
+      <input v-model="search" class="input" type="text">
 
       <table class="table">
 
@@ -78,12 +78,38 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  color: #ffbf00;
+  margin-bottom: 0.4em;
+}
+
+.column{
+  background-image: url("../assets/space_background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  border-color: #a67c00;
+  background-color: black;
+}
+
 .image {
   width: 100%;
 }
 
+.input {
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-color: #ffcf40;
+  color: #ffbf00
+}
+
 .table {
-  width: 100%;
-  line-height: 1;
+  width: 80%;
+  margin: auto;
+  margin-top: 1em;
+  line-height: 6;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
 }
 </style>

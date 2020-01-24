@@ -104,7 +104,12 @@ h1 {
 }
 
 .table {
-  width: 100%;
-  line-height: 1;
+  width: 80%;
+  margin: auto;
+  margin-top: 0.3em;
+  line-height: 6;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
 }
 </style>

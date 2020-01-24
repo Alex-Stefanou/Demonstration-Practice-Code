@@ -61,7 +61,7 @@ export default {
       }
       else {
         this.age.valid = false;
-        this.age.message = "Please enter age with digits.";
+        this.age.message = "Please enter age using digits.";
       }
     },
 
@@ -83,9 +83,14 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.column {
+  border-color: #112d4e;
+  background-color: #dbe2ef;
+}
 
-/*Local styling here*/
-
+.button, .input {
+  border-color: #3f72af;
+  background-color: #f9f7f7;
+}
 </style>

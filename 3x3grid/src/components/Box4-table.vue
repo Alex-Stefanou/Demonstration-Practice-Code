@@ -15,7 +15,7 @@
             <td>{{ User.forename }}</td>
             <td>{{ User.surname }}</td>
             <td class="age">{{ User.age }}</td>
-            <td><button v-on:click="deleteRow(i)">delete</button></td>
+            <td><button v-on:click="deleteRow(i)" class="button">delete</button></td>
           </tr>
         </tbody>
 
@@ -52,16 +52,34 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1 {
+  color: #345d8f;
+}
 
 .age {
   text-align: right !important;
 }
 
+.button {
+  height: 1.5em;
+  padding-top: 0;
+  border-color: #3f72af;
+  background-color: #f9f7f7;
+}
+
+.column {
+  border-color: #112d4e;
+  background-image: linear-gradient(#dbe2ef 70%, #3f72af 150%);
+}
+
 .table {
   width: 100%;
   line-height: 1;
+  background-color: #f9f7f7;
 }
 
+.table td {
+  padding-bottom: 0.2em;
+}
 </style>

@@ -77,9 +77,7 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .image {
   width: 100%;
 }
@@ -88,5 +86,4 @@ export default {
   width: 100%;
   line-height: 1;
 }
-
 </style>

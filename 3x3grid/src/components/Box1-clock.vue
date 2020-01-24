@@ -62,5 +62,4 @@ export default {
   background-size: 120%;
   background-color: black;
 }
-
 </style>

@@ -38,12 +38,12 @@ export default {
       grid: false,
       Planets: [
         {name: "Mercury"},
-        {name: "Venus"},   
-        {name: "Earth"},  
+        {name: "Venus"},
+        {name: "Earth"},
         {name: "Mars"},
         {name: "Jupiter"},
         {name: "Saturn"},
-        {name: "Uranus"}, 
+        {name: "Uranus"},
         {name: "Neptune"},
         {name: "Pluto"}
       ],
@@ -66,7 +66,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
   color: #ffbf00;
@@ -108,5 +107,4 @@ h1 {
   width: 100%;
   line-height: 1;
 }
-
 </style>

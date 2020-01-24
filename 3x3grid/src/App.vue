@@ -101,6 +101,4 @@ h1 {
   border: black solid 6px;
   border-radius: 0.5em;
 }
-
-
 </style>

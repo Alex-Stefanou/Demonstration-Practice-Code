@@ -1,9 +1,7 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>The time is</h1>
     <div class="clock">
-      <span>{{hours}}:</span>
-      <span>{{minutes}}</span>
+      <span id="time">{{hours}} {{minutes}}</span>
       <span id="seconds">{{seconds}}</span>
     </div>
   </div>
@@ -40,23 +38,21 @@ export default {
 </script>
 
 <style scoped>
-
-h1 {
-  font-size: 1.5em;
-  font-weight: 600;
-  color: #6a2c70
-}
-
 #seconds {
   font-size: 0.4em;
 }
 
+#time {
+  word-spacing: 2em
+}
+
 .clock {
-  padding-top: 5vh;
+  padding-top: 10.5vh;
   padding-left: 0.5em;
-  font-size: 2.5em;
-  font-weight: 800;
-  color: #b83b5e;
+  font-size: 3em;
+  font-weight: 500;
+  font-family: verdana;
+  color: #fefbf3;
 }
 
 .column {

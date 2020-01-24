@@ -57,7 +57,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 label {
   font-size: 1.8em;
   font-weight: 600;
@@ -100,5 +99,4 @@ label {
 .success {
   background-image: radial-gradient(green, #08d9d6 70%)
 }
-
 </style>

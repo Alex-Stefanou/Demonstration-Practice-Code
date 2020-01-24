@@ -72,11 +72,11 @@ label {
 .column {
   text-align: left;
   border-color: #252a34;
-  background-color: #08d9d6;
+  background-color: #02bfa5;
 }
 
 .control {
-  margin-top: 0.3em;
+  margin-top: 0.5em;
   margin-bottom: 0.3em;
 }
 
@@ -86,7 +86,7 @@ label {
 }
 
 .failure {
-  background-image: radial-gradient(red, #08d9d6 70%)
+  background-image: radial-gradient(#dc143c, #02bfa5 70%)
 }
 
 .input {
@@ -97,6 +97,6 @@ label {
 }
 
 .success {
-  background-image: radial-gradient(green, #08d9d6 70%)
+  background-image: radial-gradient(#03e676, #02bfa5 80%)
 }
 </style>

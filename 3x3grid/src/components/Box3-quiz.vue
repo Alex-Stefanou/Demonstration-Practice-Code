@@ -4,87 +4,87 @@
     <h2>If you get stuck, hover over the question for a hint.</h2>
 
     <template v-if="quiz.question == 0">
-      <button v-on:click="next">Start Quiz</button>
+      <button v-on:click="next" class="button start">Start Quiz</button>
     </template>
 
     <template v-if="quiz.question == 1">
       <div v-bind:title="quiz.Q1.hint">{{ quiz.Q1.question }}</div>
       <div>
         <input type="radio" id="A1" value=0 v-model="quiz.answer">
-        <label for="A1">{{ quiz.Q1.option[0] }}</label>
+        <label for="A1">  {{ quiz.Q1.option[0] }}</label>
         <br>
         <input type="radio" id="B1" value=1 v-model="quiz.answer">
-        <label for="B1">{{ quiz.Q1.option[1] }}</label>
+        <label for="B1">  {{ quiz.Q1.option[1] }}</label>
         <br>
         <input type="radio" id="C1" value=2 v-model="quiz.answer">
-        <label for="C1">{{ quiz.Q1.option[2] }}</label>
+        <label for="C1">  {{ quiz.Q1.option[2] }}</label>
         <br>
         <input type="radio" id="D1" value=3 v-model="quiz.answer">
-        <label for="D1">{{ quiz.Q1.option[3] }}</label>
+        <label for="D1">  {{ quiz.Q1.option[3] }}</label>
       </div>
-      <button v-on:click="next">Next question</button>
+      <button v-on:click="next" class="button next">Next question</button>
     </template>
 
     <template v-if="quiz.question == 2">
       <div v-bind:title="quiz.Q2.hint">{{ quiz.Q2.question }}</div>
       <div>
         <input type="radio" id="A2" value=0 v-model="quiz.answer">
-        <label for="A2">{{ quiz.Q2.option[0] }}</label>
+        <label for="A2">  {{ quiz.Q2.option[0] }}</label>
         <br>
         <input type="radio" id="B2" value=1 v-model="quiz.answer">
-        <label for="B2">{{ quiz.Q2.option[1] }}</label>
+        <label for="B2">  {{ quiz.Q2.option[1] }}</label>
         <br>
         <input type="radio" id="C2" value=2 v-model="quiz.answer">
-        <label for="C2">{{ quiz.Q2.option[2] }}</label>
+        <label for="C2">  {{ quiz.Q2.option[2] }}</label>
         <br>
         <input type="radio" id="D2" value=3 v-model="quiz.answer">
-        <label for="D2">{{ quiz.Q2.option[3] }}</label>
+        <label for="D2">  {{ quiz.Q2.option[3] }}</label>
       </div>
-      <button v-on:click="next">Next question</button>
+      <button v-on:click="next" class="button next">Next question</button>
     </template>
 
     <template v-if="quiz.question == 3">
       <div v-bind:title="quiz.Q3.hint">{{ quiz.Q3.question }}</div>
       <div>
         <input type="radio" id="A3" value=0 v-model="quiz.answer">
-        <label for="A3">{{ quiz.Q3.option[0] }}</label>
+        <label for="A3">  {{ quiz.Q3.option[0] }}</label>
         <br>
         <input type="radio" id="B3" value=1 v-model="quiz.answer">
-        <label for="B3">{{ quiz.Q3.option[1] }}</label>
+        <label for="B3">  {{ quiz.Q3.option[1] }}</label>
         <br>
         <input type="radio" id="C3" value=2 v-model="quiz.answer">
-        <label for="C3">{{ quiz.Q3.option[2] }}</label>
+        <label for="C3">  {{ quiz.Q3.option[2] }}</label>
         <br>
         <input type="radio" id="D3" value=3 v-model="quiz.answer">
-        <label for="D3">{{ quiz.Q3.option[3] }}</label>
+        <label for="D3">  {{ quiz.Q3.option[3] }}</label>
       </div>
-      <button v-on:click="next">Next question</button>
+      <button v-on:click="next" class="button next">Next question</button>
     </template>
 
     <template v-if="quiz.question == 4">
       <div v-bind:title="quiz.Q4.hint">{{ quiz.Q4.question }}</div>
       <div>
         <input type="radio" id="A4" value=0 v-model="quiz.answer">
-        <label for="A4">{{ quiz.Q4.option[0] }}</label>
+        <label for="A4">  {{ quiz.Q4.option[0] }}</label>
         <br>
         <input type="radio" id="B4" value=1 v-model="quiz.answer">
-        <label for="B4">{{ quiz.Q4.option[1] }}</label>
+        <label for="B4">  {{ quiz.Q4.option[1] }}</label>
         <br>
         <input type="radio" id="C4" value=2 v-model="quiz.answer">
-        <label for="C4">{{ quiz.Q4.option[2] }}</label>
+        <label for="C4">  {{ quiz.Q4.option[2] }}</label>
         <br>
         <input type="radio" id="D4" value=3 v-model="quiz.answer">
-        <label for="D4">{{ quiz.Q4.option[3] }}</label>
+        <label for="D4">  {{ quiz.Q4.option[3] }}</label>
       </div>
-      <button v-on:click="next">Next question</button>
+      <button v-on:click="next" class="button next">Finish</button>
     </template>
     
     <template v-if="quiz.question == 5">
-      <div>
+      <div class="result">
         <h3>You scored {{quiz.score}} out of 4</h3>
         <h3>{{ quiz.result[quiz.score] }}</h3>
       </div>
-      <button v-on:click="reset">Restart Quiz</button>
+      <button v-on:click="reset" class="button start">Restart Quiz</button>
     </template>
 
   </div>
@@ -191,7 +191,41 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h2 {
+  margin-bottom: 0.6em;
+  font-size: 0.8em;
+}
 
-/*Local styling here*/
+input {
+  margin-top: 0.4em;
+}
 
+.button{
+  margin-top: 0.5em;
+  background-color: #977254;
+  border-color: #5c1916;
+  color: #5c1916;
+}
+
+.column {
+  padding-top: 0.4em;
+  border-color: #6b2506;
+  background-color: #cfa76e;
+  color: #3f1d0b;
+}
+
+.next {
+  height: 1.8em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+
+.question {
+  line-height: 2em;
+}
+
+.result {
+  line-height: 1.5em;
+  font-size: 1.2em;
+}
 </style>

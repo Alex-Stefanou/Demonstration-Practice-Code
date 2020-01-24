@@ -1,12 +1,11 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>The Solar System!</h1>
-    <div>
-      Layout:
-      <template v-if="grid">Grid</template>
-      <template v-if="!grid">List</template>
+    <div class="layout-description">
+      <template v-if="grid">Grid </template>
+      <template v-if="!grid">List </template>
       <input type="checkbox" v-model="grid"/>
     </div>
+    <h1>The Solar System!</h1>
 
     <div v-if="grid">
       <div id="grid">
@@ -36,7 +35,7 @@ export default {
 
   data() {
     return{
-      grid: true,
+      grid: false,
       Planets: [
         {name: "Mercury"},
         {name: "Venus"},   
@@ -61,12 +60,17 @@ export default {
     this.Planets[6].img = require("../assets/planets/uranus.png");
     this.Planets[7].img = require("../assets/planets/neptune.png");
     this.Planets[8].img = require("../assets/planets/pluto.png");
+
+    this.grid = true;
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1 {
+  color: #ffbf00;
+}
 
 #grid {
   display: grid;
@@ -77,6 +81,12 @@ export default {
   justify-content: center;
 }
 
+.column {
+  padding-top: 0.4em;
+  border-color: #a67c00;
+  background-color: black;
+}
+
 .grid-item {
   width: 100%;
   align-self: center;
@@ -84,6 +94,14 @@ export default {
 
 .image {
   width: 100%;
+}
+
+.layout-description {
+  padding-top: 0;
+  text-align: right;
+  line-height: 0;
+  font-size: 0.8em;
+  color: #bf9b30;
 }
 
 .table {

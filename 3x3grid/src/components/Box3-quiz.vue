@@ -1,6 +1,6 @@
 <template>
   <div class="column is-one-third-tablet">
-    <h1>Welcome to the ultimate hedgehog quiz!</h1>
+    <h1>Welcome to the Ultimate Hedgehog Quiz!</h1>
     <h2>If you get stuck, hover over the question for a hint.</h2>
 
     <template v-if="quiz.question == 0">

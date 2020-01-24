@@ -2,7 +2,7 @@
   <div class="column is-one-third-tablet">
     <h1>Order form:</h1>
     <div class="table-container">
-      <table class="table">
+      <table class="table is-hoverable">
 
         <thead>
           <th></th>

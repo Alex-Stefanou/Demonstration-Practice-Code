@@ -2,7 +2,7 @@
   <div id="app">
     <div class="columns is-tablet">
       <box1/>
-      <box2/>
+      <box2/> <!-- Logins:   admin/admin   alex/Hunter2 -->
       <box3/>
     </div>
     <div class="columns is-tablet">

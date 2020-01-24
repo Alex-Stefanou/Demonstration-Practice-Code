@@ -60,8 +60,11 @@ h1 {
 }
 
 .column {
-  border-color: #f08a5d;
-  background-image: linear-gradient(to top left, #f08a5d, #f9ed69 40%);
+  background-image: url("../assets/hourglass.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120%;
+  background-color: black;
 }
 
 </style>

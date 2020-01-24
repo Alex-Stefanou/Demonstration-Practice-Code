@@ -5,9 +5,6 @@
 
       <div class="control">
         <input v-model="input.username" type="text" class="input" placeholder="Username">
-      </div>
-
-      <div class="control">
         <input v-model="input.password" type="password" class="input" placeholder="Password"  @keyup.enter="login">
       </div>
 
@@ -62,13 +59,13 @@ export default {
 <style scoped>
 
 label {
-  margin-bottom: 1em;
   font-size: 1.8em;
   font-weight: 600;
   color: #ff2e63;
 }
 
 .button {
+  margin-right: 1em;
   background-color: #eaeaea;
   color: #ff2e63;
 }
@@ -79,24 +76,29 @@ label {
   background-color: #08d9d6;
 }
 
+.control {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
 .failure, .success {
-  padding: 0.5em;
-  line-height: 2.2em;
+  padding: 0.65em;
+  line-height: 2.65em;
 }
 
 .failure {
-  background-color: red;
+  background-image: radial-gradient(red, #08d9d6 70%)
 }
 
 .input {
-  margin-bottom: 0.4em;
+  margin-bottom: 0.3em;
   border: #252a34 solid 2px;
   background-color: #eaeaea;
   color: black;
 }
 
 .success {
-  background-color: green;
+  background-image: radial-gradient(green, #08d9d6 70%)
 }
 
 </style>

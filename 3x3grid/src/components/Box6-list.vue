@@ -70,4 +70,8 @@ export default {
   width: 100%;
   line-height: 1;
 }
+
+.table td {
+  padding-bottom: 0.2em;
+}
 </style>

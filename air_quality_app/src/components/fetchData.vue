@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+//import axios from 'axios'
 
 export default {
   name: 'fetchData',
@@ -20,26 +20,11 @@ export default {
   },
 
   mounted() {
-    var that = this;
-    axios.get("https://api.openaq.org/v1/countries")
-      .then(function (response) {
-        // handle success
-        that.data = response.data.results;
-      })
-      .catch(function (error) {
-        // handle error
-        console.log("error found");
-        console.log(error.response);
-        //console.log(error.response);
-      })
-      //.finally
+    this.$store.updateAllCountries();
+    this.data = $store.getters.allCountries;
   },
 
   methods: {
-    storeData(input) {
-      this.data = input;
-    },
-
     getNextCountry: function() {
       this.country = this.data[this.i].name;
       this.i++;

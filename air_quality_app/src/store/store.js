@@ -6,23 +6,25 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    allCountries = [],
+    allCountries: [],
   },
   
   mutations: {
     updateAllCountries (state) {
       //let that = this;
-      axios.get("https://api.openaq.org/v1/countries");
-
+      axios.get("https://api.openaq.org/v1/countries")
       .then(function (response) { // handle success
         state.allCountries = response.data.results;
         console.log("Successfully updated allCountries");
       })
-
       .catch(function (error) { // handle error
         console.log("An error has occured during updateAllCountries()");
         console.log(error.response);
       })
-    }
-  }
+    },
+  },
+
+  getters: {
+    allCountries: state => state.allCountries
+  },
 })

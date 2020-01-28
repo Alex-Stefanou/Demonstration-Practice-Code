@@ -6,10 +6,18 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
+    appState: "home",
     allCountries: [],
   },
   
+  //dispatch for actions -- commit for mutations (arguements come after)
+
   mutations: {
+    setAppState (state, newState) {
+      state.appState = newState;
+      console.log("app state updated to: " + newState);
+    },
+
     setAllCountries (state, countries) {
       state.allCountries = countries;
     }
@@ -30,6 +38,7 @@ export const store = new Vuex.Store({
   },
 
   getters: {
-    allCountries: state => state.allCountries
+    appState: state => state.appState,
+    allCountries: state => state.allCountries,
   },
 })

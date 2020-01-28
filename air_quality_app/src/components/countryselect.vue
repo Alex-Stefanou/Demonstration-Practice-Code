@@ -9,7 +9,7 @@
 //import axios from 'axios'
 
 export default {
-  name: 'fetchData',
+  name: 'countrySelect',
 
   data () {
     return {
@@ -19,7 +19,7 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch("updateAllCountries"); //dispatch for actions -- commit for mutations (arguements come after)
+    this.$store.dispatch("updateAllCountries");
   },
 
   methods: {
@@ -37,7 +37,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;

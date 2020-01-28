@@ -2,7 +2,7 @@
   <div id="app">
 <!--     
     <div v-if="appState != 'home'">
-      <navbar/>
+      <header/>
     </div> -->
 
     <div v-if="appState == 'home'">
@@ -17,11 +17,11 @@
     <div v-if="appState == 'citySelect'">
       <cityselect/>
     </div>
-    
+    -->
     <div v-if="appState == 'coordinates'">
       <coordinates/>
     </div>
-    
+<!--
     <div v-if="appState == 'results'">
       <results/>
     </div> -->
@@ -30,19 +30,27 @@
 </template>
 
 <script>
+import homepage from './components/homepage.vue'
 import countrySelect from './components/countryselect.vue'
+import coordinates from './components/coordinates.vue'
 
 export default {
   name: 'app',
   components: {
-    countrySelect
+    homepage,
+    countrySelect,
+    coordinates,
   },
 
-  data() {
-    return {
-      appState: "home",
-    }
-  }
+  data () {
+    return {}
+  },
+
+  computed: {
+    appState: function() {
+      return this.$store.getters.appState;
+    },
+  },
 }
 </script>
 

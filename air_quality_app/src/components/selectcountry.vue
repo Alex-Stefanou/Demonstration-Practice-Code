@@ -1,7 +1,21 @@
 <template>
-  <div class="hello">
-    <h1>{{ country }}</h1>
-    <button v-on:click="getNextCountry">Next country</button>
+  <div>
+    <h1>Select a country</h1>
+
+    <input v-model="search" class="input" type="text">
+
+    <div class="table-container">
+      <table class="table">
+
+        <tbody>
+          <tr v-for="(Country,i) in displayedCountries" :key="i">
+            <td>{{ Country }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
   </div>
 </template>
 
@@ -10,46 +24,62 @@
 
 export default {
   name: 'selectCountry',
-
-  data () {
-    return {
-      country: "",
-      i: 0,
-    }
-  },
-
+  
   mounted() {
     this.$store.dispatch("updateAllCountries");
   },
 
-  methods: {
-    getNextCountry: function() {
-      this.country = this.data[this.i].name;
-      this.i++;
+  data () {
+    return {
+      search: "",
+      displayedCountries: [],
     }
   },
 
   computed: {
-    data () {
-      return this.$store.getters.allCountries;
+    allCountries () {
+      let listCountries = []
+      for (let i = 0; i < this.$store.getters.allCountries.length; i++) {
+        listCountries.push( this.$store.getters.allCountries[i].name );
+      }
+      
+      for (let i = 0; i < listCountries.length; i++) {
+        while ( listCountries[i] == undefined ) {
+          listCountries.splice ( i, 1);
+        }
+      }
+      return listCountries.sort();
+    }
+  },
+
+  watch: {
+    search: function() {
+      this.filterCountries();
+    }
+  },
+
+  methods: {
+    filterCountries () {
+      this.displayedCountries = [];
+
+      for ( let i = 0; i < this.allCountries.length; i++) {
+        if ( this.allCountries[i].toLowerCase().includes( this.search.toLowerCase() ) ) {
+          this.displayedCountries.push( this.allCountries[i] );
+        }
+      }
     }
   }
-}
+};
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.table {
+  margin: auto;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.table-container {
+  width: 80%;
+  margin: auto;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
+
 </style>

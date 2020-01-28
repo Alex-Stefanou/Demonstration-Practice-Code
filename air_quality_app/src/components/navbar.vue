@@ -10,14 +10,6 @@
 export default {
   name: 'navbar',
 
-  data() {
-    return{
-    };
-  },
-
-  mounted() {
-  },
-
   methods: {
     navigateBack ( appState ) {
       switch (appState) {
@@ -44,10 +36,10 @@ export default {
 
 <style scoped>
 #back {
-  float: right;
+  float: left;
 }
 
 #home {
-  float: left;
+  float: right;
 }
 </style>

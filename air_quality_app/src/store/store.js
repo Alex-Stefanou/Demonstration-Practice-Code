@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
 
     setAppState (state, newState) {
       state.appState = newState;
-      console.log("app state updated to: " + newState);
+      console.log("appState updated to: " + newState);
     },
 
     setAllCountries (state, countries) {
@@ -30,12 +30,11 @@ export const store = new Vuex.Store({
   
   actions: {
     updateAllCountries (context) {
-      axios.get("https://api.openaq.org/v1/countries")
-        .then(function (response) {
+      axios.get( "https://api.openaq.org/v1/countries" )
+        .then (function (response) {
           context.commit("setAllCountries", response.data.results);
-          console.log("Successfully updated allCountries");
         })
-        .catch(function (error) {
+        .catch (function (error) {
           console.log("An error has occured during updateAllCountries()");
           console.log(error.response);
         })

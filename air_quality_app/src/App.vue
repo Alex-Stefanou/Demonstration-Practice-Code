@@ -13,22 +13,21 @@
       <selectCountry/>
     </div>
     
-<!--     
     <div v-if="appState == 'selectCity'">
       <selectCity/>
-    </div>-->
-<!--
+    </div>
+
     <div v-if="appState == 'resultCity'">
       <resultCity/>
-    </div> -->
+    </div>
 
     <div v-if="appState == 'selectCoords'">
       <selectCoords/>
     </div>
-<!--
-    <div v-if="appState == 'resultCoordinates'">
-      <resultCoordinates/>
-    </div> -->
+
+    <div v-if="appState == 'resultCoords'">
+      <resultCoords/>
+    </div>
 
   </div>
 </template>
@@ -37,7 +36,10 @@
 import navbar from './components/navbar.vue'
 import homepage from './components/homepage.vue'
 import selectCountry from './components/selectcountry.vue'
+import selectCity from './components/selectcity.vue'
+import resultCity from './components/resultcity.vue'
 import selectCoords from './components/selectcoords.vue'
+import resultCoords from './components/resultcoords.vue'
 
 export default {
   name: 'app',
@@ -45,7 +47,10 @@ export default {
     navbar,
     homepage,
     selectCountry,
+    selectCity,
+    resultCity,
     selectCoords,
+    resultCoords
   },
 
   data () {

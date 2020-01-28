@@ -10,17 +10,22 @@ export const store = new Vuex.Store({
   },
   
   mutations: {
-    updateAllCountries (state) {
-      //let that = this;
+    setAllCountries (state, countries) {
+      state.allCountries = countries;
+    }
+  },
+  
+  actions: {
+    updateAllCountries (context) {
       axios.get("https://api.openaq.org/v1/countries")
-      .then(function (response) { // handle success
-        state.allCountries = response.data.results;
-        console.log("Successfully updated allCountries");
-      })
-      .catch(function (error) { // handle error
-        console.log("An error has occured during updateAllCountries()");
-        console.log(error.response);
-      })
+        .then(function (response) {
+          context.commit("setAllCountries", response.data.results);
+          console.log("Successfully updated allCountries");
+        })
+        .catch(function (error) {
+          console.log("An error has occured during updateAllCountries()");
+          console.log(error.response);
+        })
     },
   },
 

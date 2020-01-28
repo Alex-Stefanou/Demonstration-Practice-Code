@@ -1,16 +1,47 @@
 <template>
   <div id="app">
-    <fetchData/>
+<!--     
+    <div v-if="appState != 'home'">
+      <navbar/>
+    </div> -->
+
+    <div v-if="appState == 'home'">
+      <homepage/>
+    </div>
+
+    <div v-if="appState == 'countrySelect'">
+      <countrySelect/>
+    </div>
+    
+<!--     
+    <div v-if="appState == 'citySelect'">
+      <cityselect/>
+    </div>
+    
+    <div v-if="appState == 'coordinates'">
+      <coordinates/>
+    </div>
+    
+    <div v-if="appState == 'results'">
+      <results/>
+    </div> -->
+
   </div>
 </template>
 
 <script>
-import fetchData from './components/fetchData.vue'
+import countrySelect from './components/countryselect.vue'
 
 export default {
   name: 'app',
   components: {
-    fetchData
+    countrySelect
+  },
+
+  data() {
+    return {
+      appState: "home",
+    }
   }
 }
 </script>

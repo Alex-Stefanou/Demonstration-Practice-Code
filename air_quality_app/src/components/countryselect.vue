@@ -13,21 +13,25 @@ export default {
 
   data () {
     return {
-      data: [],
       country: "",
       i: 0,
     }
   },
 
   mounted() {
-    this.$store.updateAllCountries();
-    this.data = $store.getters.allCountries;
+    this.$store.dispatch("updateAllCountries"); //dispatch for actions -- commit for mutations (arguements come after)
   },
 
   methods: {
     getNextCountry: function() {
       this.country = this.data[this.i].name;
       this.i++;
+    }
+  },
+
+  computed: {
+    data () {
+      return this.$store.getters.allCountries;
     }
   }
 }

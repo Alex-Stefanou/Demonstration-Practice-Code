@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'coordinates',
+  name: 'selectCoords',
 
   data() {
     return{

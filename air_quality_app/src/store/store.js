@@ -12,7 +12,12 @@ export const store = new Vuex.Store({
   
   //dispatch for actions -- commit for mutations (arguements come after)
 
-  mutations: {
+  mutations: { //UPDATE THIS AS MORE STATES ARE ADDED
+    resetApp (state) {
+      state.appState = "home";
+      console.log("Application has been reset");
+    },
+
     setAppState (state, newState) {
       state.appState = newState;
       console.log("app state updated to: " + newState);

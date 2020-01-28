@@ -9,7 +9,7 @@
 //import axios from 'axios'
 
 export default {
-  name: 'countrySelect',
+  name: 'selectCountry',
 
   data () {
     return {

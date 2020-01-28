@@ -1,45 +1,51 @@
 <template>
   <div id="app">
-<!--     
+   
     <div v-if="appState != 'home'">
-      <header/>
-    </div> -->
+      <navbar/>
+    </div>
 
     <div v-if="appState == 'home'">
       <homepage/>
     </div>
 
-    <div v-if="appState == 'countrySelect'">
-      <countrySelect/>
+    <div v-if="appState == 'selectCountry'">
+      <selectCountry/>
     </div>
     
 <!--     
-    <div v-if="appState == 'citySelect'">
-      <cityselect/>
-    </div>
-    -->
-    <div v-if="appState == 'coordinates'">
-      <coordinates/>
+    <div v-if="appState == 'selectCity'">
+      <selectCity/>
+    </div>-->
+<!--
+    <div v-if="appState == 'resultCity'">
+      <resultCity/>
+    </div> -->
+
+    <div v-if="appState == 'selectCoords'">
+      <selectCoords/>
     </div>
 <!--
-    <div v-if="appState == 'results'">
-      <results/>
+    <div v-if="appState == 'resultCoordinates'">
+      <resultCoordinates/>
     </div> -->
 
   </div>
 </template>
 
 <script>
+import navbar from './components/navbar.vue'
 import homepage from './components/homepage.vue'
-import countrySelect from './components/countryselect.vue'
-import coordinates from './components/coordinates.vue'
+import selectCountry from './components/selectcountry.vue'
+import selectCoords from './components/selectcoords.vue'
 
 export default {
   name: 'app',
   components: {
+    navbar,
     homepage,
-    countrySelect,
-    coordinates,
+    selectCountry,
+    selectCoords,
   },
 
   data () {

@@ -7,9 +7,9 @@
     </div>
 
     <div>
-      <div @click="navigate" id="countrySelect">Select a Country and City</div>
+      <div @click="navigate" id="selectCountry">Select a Country and City</div>
       - or -
-      <div @click="navigate" id="coordinates">Enter a Latitude and Longditude</div>
+      <div @click="navigate" id="selectCoords">Enter a Latitude and Longditude</div>
     </div>
 
   </div>
@@ -25,9 +25,9 @@ export default {
   },
 
   methods: {
-    navigate: function(e) { //e.toElement.id
-      if ( e.toElement.id == "countrySelect") this.$store.commit("setAppState", "countrySelect");
-      else if ( e.toElement.id == "coordinates")   this.$store.commit("setAppState", "coordinates");
+    navigate: function(e) {
+      if ( e.toElement.id == "selectCountry" )     this.$store.commit("setAppState", "selectCountry");
+      else if ( e.toElement.id == "selectCoords" ) this.$store.commit("setAppState", "selectCoords");
       else console.log("Navigation from homepage failed.")
     }
   },

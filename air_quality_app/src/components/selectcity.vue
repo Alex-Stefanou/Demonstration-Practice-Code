@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Select a city</h1>
+    <h1>Select a city/location in {{ country }}</h1>
 
     <input v-model="search" class="input" type="text">
 
@@ -29,7 +29,7 @@
 export default {
   name: 'selectCity',
   
-  /* Tell store to initialise list of countries from api */
+  /* Tell store to initialise list of cities in the selected country from api */
   mounted() {
     this.$store.dispatch("updateAllCities");
   },
@@ -50,13 +50,19 @@ export default {
       for (let i = 0; i < this.$store.getters.allCities.length; i++) {
         listCities.push( this.$store.getters.allCities[i].name ); //load just the city names into a new array
       }
-      
-      for (let i = 0; i < listCities.length; i++) {
-        while ( listCities[i] == undefined ) { //Remove elements with no city name
+
+      /* This loop removes several of the most commonly occuring poorly defined values but is undoubtedly not exhaustive */
+      for (let i = 0; i < listCities.length; i++) { //Remove elements with no values/poorly defined values
+        while ( listCities[i] == undefined || listCities[i] == "N/A" || listCities[i] == "unused" || listCities[i].includes ("�") ) {
           listCities.splice ( i, 1);
+          if (listCities.length <= i) break; //Exit while loop if last value in array has been removed
         }
       }
       return listCities.sort();  //sort alphabetically
+    },
+
+    country () {
+      return this.$store.getters.selectedCountry[0];
     },
 
     pageNumbers () { //calculate how many pages there should be + pushes to array for display

@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
     allCities: [],
     allCountries: [],
     selectedCity: "",
-    selectedCountry: "",
+    selectedCountry: [ "" , "" ]
   },
   
   //dispatch for actions -- commit for mutations (arguements come after)
@@ -19,7 +19,7 @@ export const store = new Vuex.Store({
     resetApp (state) {
       state.appState = "home";
       state.selectedCity = "";
-      state.selectedCountry = "";
+      state.selectedCountry = [ "" , "" ];
       console.log("Application has been reset");
     },
 
@@ -29,8 +29,10 @@ export const store = new Vuex.Store({
     },
 
     setCountry (state, country) {
-      state.selectedCountry = country;
-      console.log("selectedCountry updated to: " + country);
+      state.selectedCountry[0] = country;
+      let index = state.allCountries.findIndex( item => item.name === country );
+      state.selectedCountry[1] = state.allCountries[index].code;
+      console.log("selectedCountry updated to: " + country + " (code " + state.selectedCountry[1] + ").");
     },
 
     setAppState (state, newState) {
@@ -51,13 +53,11 @@ export const store = new Vuex.Store({
     updateAllCities (context) {
       axios.get( "https://api.openaq.org/v1/cities?limit=999", {
           params: {
-            country: this.state.selectedCountry
+            country: this.state.selectedCountry[1]
           }
         })
         .then (function (response) {
-          console.log("reults of city fetch are" + response)
           context.commit("setAllCities", response.data.results);
-          console.log("AllCities set to: " + response.data.results);
         })
         .catch (function (error) {
           console.log("An error has occured during updateAllCities()");
@@ -81,5 +81,7 @@ export const store = new Vuex.Store({
     appState: state => state.appState,
     allCities: state => state.allCities,
     allCountries: state => state.allCountries,
+    selectedCity: state => state.selectedCity,
+    selectedCountry: state => state.selectedCountry //N.B. this is an array
   },
 })

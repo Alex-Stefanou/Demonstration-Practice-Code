@@ -92,7 +92,7 @@ export default {
       this.currentPage = parseInt( e.toElement.id );
     },
 
-    displayPage ( page ) { //Changes which section of the country list is displayed at a time i.e. different pages
+    displayPage ( page ) { //Changes which section of the list is displayed at a time i.e. different pages
       --page;
       this.displayedCountries = this.filteredCountries.slice( page * this.pageSize, (page + 1) * this.pageSize);
     },
@@ -107,18 +107,9 @@ export default {
       }
     },
 
-    findCountryCode ( countryName ) {
-      for (let i = 0; i < this.$store.getters.allCountries.length; i++) {
-        if ( this.$store.getters.allCountries[i].name === countryName ) {
-          var index = i;
-        }
-      }
-      return this.$store.getters.allCountries[index].code;
-    },
-
     navigateCountry (e) { //Commit country selection to store and proceed to city selection
       this.$store.commit("setAppState", "selectCity");
-      this.$store.commit("setCountry", this.findCountryCode( e.toElement.id ) );
+      this.$store.commit("setCountry", e.toElement.id);
     }
   }
   

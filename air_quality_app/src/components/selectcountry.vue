@@ -46,7 +46,7 @@ export default {
 
   computed: {
     allCountries () { //Clean data from api and store in an array that will not be altered
-      let listCountries = []
+      let listCountries = [];
       for (let i = 0; i < this.$store.getters.allCountries.length; i++) {
         listCountries.push( this.$store.getters.allCountries[i].name ); //load just the country names into a new array
       }
@@ -107,9 +107,18 @@ export default {
       }
     },
 
+    findCountryCode ( countryName ) {
+      for (let i = 0; i < this.$store.getters.allCountries.length; i++) {
+        if ( this.$store.getters.allCountries[i].name === countryName ) {
+          var index = i;
+        }
+      }
+      return this.$store.getters.allCountries[index].code;
+    },
+
     navigateCountry (e) { //Commit country selection to store and proceed to city selection
       this.$store.commit("setAppState", "selectCity");
-      this.$store.commit("setCountry", e.toElement.id);
+      this.$store.commit("setCountry", this.findCountryCode( e.toElement.id ) );
     }
   }
   

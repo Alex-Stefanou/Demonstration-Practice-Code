@@ -9,7 +9,7 @@
 
         <tbody>
           <tr v-for="(Country,i) in displayedCountries" :key="i">
-            <td>{{ Country }}</td>
+            <td @click="navigateCountry" v-bind:id="Country">{{ Country }}</td>
           </tr>
         </tbody>
 
@@ -105,6 +105,11 @@ export default {
           this.filteredCountries.push( this.allCountries[i] );
         }
       }
+    },
+
+    navigateCountry (e) { //Commit country selection to store and proceed to city selection
+      this.$store.commit("setAppState", "selectCity");
+      this.$store.commit("setCountry", e.toElement.id);
     }
   }
   

@@ -1,14 +1,14 @@
 <template>
   <div>
     <div>
-      <h1>Coordinates page will go here</h1>
+      <h1>Select City page will go here</h1>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'selectCoords',
+  name: 'selectCity',
 
   data() {
     return{

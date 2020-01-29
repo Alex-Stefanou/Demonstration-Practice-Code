@@ -8,6 +8,8 @@ export const store = new Vuex.Store({
   state: {
     appState: "home",
     allCountries: [],
+    selectedCity: "",
+    selectedCountry: "",
   },
   
   //dispatch for actions -- commit for mutations (arguements come after)
@@ -15,7 +17,19 @@ export const store = new Vuex.Store({
   mutations: { //UPDATE THIS AS MORE STATES ARE ADDED
     resetApp (state) {
       state.appState = "home";
+      state.selectedCity = "";
+      state.selectedCountry = "";
       console.log("Application has been reset");
+    },
+
+    setCity (state, city) {
+      state.selectedCity = city;
+      console.log("selectedCity updated to: " + city);
+    },
+
+    setCountry (state, country) {
+      state.selectedCountry = country;
+      console.log("selectedCountry updated to: " + country);
     },
 
     setAppState (state, newState) {

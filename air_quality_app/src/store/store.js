@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
+    AQparameter: [ "pm25", "pm10", "so2", "no2", "o3", "co", "bc"],
     appState: "home",
     allCities: [],
     allCountries: [],
@@ -78,10 +79,11 @@ export const store = new Vuex.Store({
   },
 
   getters: {
+    AQparameter: state => state.AQparameter,
     appState: state => state.appState,
     allCities: state => state.allCities,
     allCountries: state => state.allCountries,
     selectedCity: state => state.selectedCity,
-    selectedCountry: state => state.selectedCountry //N.B. this is an array
+    selectedCountry: state => state.selectedCountry //N.B. Unintuitively, this is an array
   },
 })

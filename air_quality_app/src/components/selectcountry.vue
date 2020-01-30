@@ -16,7 +16,7 @@
       </table>
     </div>
 
-    <span v-for="(page,j) in pageNumbers" :key="j">
+    |<span v-for="(page,j) in pageNumbers" :key="j">
       <span @click="changePage" v-bind:id="page"> {{ page }} |</span>
     </span>
 

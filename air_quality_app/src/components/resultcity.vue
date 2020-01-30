@@ -4,7 +4,11 @@
       <h1>Air Quality for the last 7 days in {{ selectedCity }}, {{ selectedCountry }}</h1>
       <span v-for="(parameter,j) in localParameters" :key="j">
       <span @click="changeParameter" v-bind:id="parameter"> {{ parameter }} |</span>
-    </span>
+      </span>
+    </div>
+    <div>
+      Graph should be displayed here
+      <canvas v-bind:id="currentParameter" width="400" height="400"></canvas>
     </div>
   </div>
 </template>

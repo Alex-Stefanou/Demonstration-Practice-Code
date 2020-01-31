@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h1>Air Quality for the last 7 days in {{ selectedCity }}, {{ selectedCountry }}</h1>
+      <h1>Air Quality for the last {{ currentPeriod}} days in {{ selectedCity }}, {{ selectedCountry }}</h1>
     </div>
 
     <div>
@@ -18,13 +18,14 @@
 
     <div>
       Graph should be displayed here
-      <canvas id="AQchart" width="400" height="400"></canvas>
+      <canvas id="AQchart"></canvas>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Chart from 'chart.js'
 
 export default {
   name: 'resultCity',
@@ -101,6 +102,18 @@ export default {
       }
     },
 
+    createGraph ( chartID ) {
+      var ctx = document.getElementById("AQchart").getContext('2d');
+
+      var myChart = new Chart (ctx, {
+        type: 'line',
+        data: {
+          yValues,
+          xDates,
+        }
+      });
+    }
+
     fetchGraphingData ( param, period ) {
       const Limit = 9999;
       this.xDates = [];
@@ -108,23 +121,23 @@ export default {
 
       let that = this;
       let currentDate = new Date();
-      let startDate = new Date();
-      let endDate = new Date();
 
       for (var days = 0; days < period; days++) {
+        const startDate = new Date();
+        const endDate = new Date();
+
         startDate.setDate( currentDate.getDate() - days - 1 );
         endDate.setDate( currentDate.getDate() - days );
 
         this.xDates.push( startDate.toString().slice(0, 10) );
-        console.log("The start date "+startDate+" has been pushed to element "+days+" of xDates here: "+this.xDates[days]);
         axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: Limit,
             country: this.$store.state.selectedCountry[1],
             city: this.$store.state.selectedCity,
             parameter: param,
-            date_from: startDate.toString(),
-            date_to: endDate.toString(),
+            date_from: startDate,
+            date_to: endDate,
           }
         })
         .then (function (response) {
@@ -142,7 +155,6 @@ export default {
           console.log("An error has occured during testing for params");
           console.log(error);
         })
- 
       }
     },
   },

@@ -13,8 +13,6 @@ export const store = new Vuex.Store({
     selectedCity: "",
     selectedCountry: [ "" , "" ]
   },
-  
-  //dispatch for actions -- commit for mutations (arguements come after)
 
   mutations: { //UPDATE THIS AS MORE STATES ARE ADDED
     resetApp (state) {

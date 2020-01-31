@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'selectCoords',
@@ -17,7 +17,6 @@ export default {
   data() {
     return{
       cities: [],
-      i: 0,
     };
   },
 
@@ -25,26 +24,21 @@ export default {
 
   methods: {
     fetchCities: function() {
-      let that = this;
-      axios.get( "https://api.openaq.org/v1/cities" )
-      // , {
-      //     params: {
-      //       country: this.state.selectedCountry
-      //     }
-      //   }
-        .then (function (response) {
-          console.log(response);
-          that.cities = response.data.results;
-          console.log("Cities set");
-        })
-        .catch (function (error) {
-          console.log("An error has occured during fetchCities()");
-          console.log(error);
-        })
+      
     },
 
     next: function() {
-      this.i++
+      var currentDate = new Date();
+      console.log(currentDate);
+
+      var startDate = new Date();
+      var endDate = new Date();
+      for (var days = 0; days < 7; days++) {
+        startDate.setDate( currentDate.getDate() - days - 1 );
+        endDate.setDate( currentDate.getDate() - days );
+        console.log(startDate);
+        console.log(endDate);
+      }
     }
   },
 };

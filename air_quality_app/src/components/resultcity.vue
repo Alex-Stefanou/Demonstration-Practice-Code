@@ -48,7 +48,6 @@ export default {
           }
         })
         .then (function (response) {
-          console.log(response.data.results);
           let fetchedData = response.data.results;
           if ( fetchedData.length == 9 ) { //if data exists for given parameter, store it
             that.localParameters.push( fetchedData[0].parameter );
@@ -61,11 +60,13 @@ export default {
       }
       return {
         currentParameter: "",
-        currentPeriod: 28,
+        currentPeriod: 30,
         localParameters,
         periods: ["Week", "Month", "3 Months"],
         selectedCity: this.$store.getters.selectedCity,
-        selectedCountry: this.$store.getters.selectedCountry[0]
+        selectedCountry: this.$store.getters.selectedCountry[0],
+        xDates: [],
+        yValues: [],
     };
   },
 
@@ -87,30 +88,62 @@ export default {
   },
 
   methods: {
-    changeParameter: function(e) {
+    changeParameter (e) {
       this.currentParameter = e.toElement.id;
     },
 
-    changePeriod: function(e) {
+    changePeriod (e) {
       switch ( e.toElement.id ) {
         case "Week": this.currentPeriod = 7; break;
-        case "Month": this.currentPeriod = 28; break;
+        case "Month": this.currentPeriod = 30; break;
         case "3 Months": this.currentPeriod = 90; break;
-        default: this.currentPeriod = 28; break;
+        default: this.currentPeriod = 30; break;
       }
     },
 
-    fetchGraphingData: function( param, period ) {
-      console.log("i'm going to make useful data to be plotted")
-      console.log(param);
-      console.log(period);
-      // var xDates = [];
-      // var yValues = [];
+    fetchGraphingData ( param, period ) {
+      const Limit = 9999;
+      this.xDates = [];
+      this.yValues = [];
 
-      // let that = this;
-      // let currentDate = new Date();
+      let that = this;
+      let currentDate = new Date();
+      let startDate = new Date();
+      let endDate = new Date();
 
-      // oneMonthAgo.setDate( oneMonthAgo.getDate() - 7);
+      for (var days = 0; days < period; days++) {
+        startDate.setDate( currentDate.getDate() - days - 1 );
+        endDate.setDate( currentDate.getDate() - days );
+
+        this.xDates.push( startDate.toString().slice(0, 10) );
+        console.log("The start date "+startDate+" has been pushed to element "+days+" of xDates here: "+this.xDates[days]);
+        axios.get( "https://api.openaq.org/v1/measurements", {
+          params: {
+            limit: Limit,
+            country: this.$store.state.selectedCountry[1],
+            city: this.$store.state.selectedCity,
+            parameter: param,
+            date_from: startDate.toString(),
+            date_to: endDate.toString(),
+          }
+        })
+        .then (function (response) {
+          let sumFetchedValues = 0;
+          let numResults = response.data.results.length;
+          for( let k = 0; k < numResults; k++ ) {
+            sumFetchedValues += response.data.results[k].value;
+          }
+          let averageValue = sumFetchedValues / numResults;
+          averageValue = Math.round( averageValue * 100 ) / 100; //round to 2 decimal places
+          console.log("averageValue was: "+averageValue);
+          that.yValues.push( averageValue );
+        })
+        .catch (function (error) {
+          console.log("An error has occured during testing for params");
+          console.log(error);
+        })
+ 
+      }
     },
   },
 };

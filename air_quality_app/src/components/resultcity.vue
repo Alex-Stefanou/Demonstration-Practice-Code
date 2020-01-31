@@ -16,7 +16,7 @@
       </span>
     </div>
 
-    <div>
+    <div class="chart-container">
       Graph should be displayed here
       <canvas id="AQchart"></canvas>
     </div>
@@ -29,6 +29,10 @@ import Chart from 'chart.js'
 
 export default {
   name: 'resultCity',
+
+  mounted() {
+    this.createGraph("AQchart");
+  },
 
   /*  Due to the nature of this data set not all measurements at a given location measure all parameters.
    *  Therefore to see what data is availible for the user selected location, this section fetchs an
@@ -103,23 +107,38 @@ export default {
     },
 
     createGraph ( chartID ) {
-      var ctx = document.getElementById("AQchart").getContext('2d');
-
+      var ctx = document.getElementById(chartID).getContext('2d');
+      
       var myChart = new Chart (ctx, {
         type: 'line',
         data: {
-          yValues,
-          xDates,
+          label: this.xDates,
+          datasets: [{
+            label: "Air quality (µg/m³)",
+            data: this.yValues,
+          }]
+        },
+        options: {
+          responsive: true,
+          // lineTension: 1,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                padding: 25,
+              }
+            }]
+          }
         }
       });
-    }
+    },
 
     fetchGraphingData ( param, period ) {
       const Limit = 9999;
       this.xDates = [];
-      this.yValues = [];
+      this.yValues.length = 0
 
-      let that = this;
+      const that = this;
       let currentDate = new Date();
 
       for (var days = 0; days < period; days++) {
@@ -162,5 +181,8 @@ export default {
 </script>
 
 <style scoped>
-
+.chart-container {
+  width: 80%;
+  margin: auto;
+}
 </style>

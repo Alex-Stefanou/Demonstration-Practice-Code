@@ -31,7 +31,7 @@ export default {
   name: 'resultCity',
 
   mounted() {
-    this.createGraph("AQchart");
+    this.createGraph();
   },
 
   /*  Due to the nature of this data set not all measurements at a given location measure all parameters.
@@ -89,6 +89,12 @@ export default {
     //IF NO PARAMETERS CONDITION WILL GO HERE!!
     //!!!
       if (this.currentParameter == "" ) this.currentParameter = this.localParameters[0];
+    },
+
+    yValues: function() { //Only render the graph after all data has been fetched
+      if (this.yValues.length == this.xDates.length) {
+        this.createGraph();
+      }
     }
   },
 
@@ -106,28 +112,39 @@ export default {
       }
     },
 
-    createGraph ( chartID ) {
-      var ctx = document.getElementById(chartID).getContext('2d');
-      
+    createGraph () {
+      var ctx = document.getElementById("AQchart").getContext('2d');
+      console.log("chart being created with x values: "+this.xDates+" and y values "+this.yValues);
       var myChart = new Chart (ctx, {
         type: 'line',
         data: {
-          label: this.xDates,
+          labels: this.xDates,
           datasets: [{
-            label: "Air quality (µg/m³)",
+            label: this.currentParameter,
             data: this.yValues,
           }]
         },
         options: {
           responsive: true,
-          // lineTension: 1,
           scales: {
+            xAxes: [{
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: "Date", 
+              },
+            }], 
             yAxes: [{
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: "Air quality (µg/m³)",
+              },
               ticks: {
                 beginAtZero: true,
-                padding: 25,
+                // padding: 25,
               }
-            }]
+            }],
           }
         }
       });
@@ -136,10 +153,10 @@ export default {
     fetchGraphingData ( param, period ) {
       const Limit = 9999;
       this.xDates = [];
-      this.yValues.length = 0
+      this.yValues = [];
 
-      const that = this;
       let currentDate = new Date();
+      let valuesContainer = [];
 
       for (var days = 0; days < period; days++) {
         const startDate = new Date();
@@ -148,7 +165,8 @@ export default {
         startDate.setDate( currentDate.getDate() - days - 1 );
         endDate.setDate( currentDate.getDate() - days );
 
-        this.xDates.push( startDate.toString().slice(0, 10) );
+        this.xDates.unshift( startDate.toString().slice(4, 10) );
+        // this.xDates.unshift( startDate );
         axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: Limit,
@@ -167,14 +185,15 @@ export default {
           }
           let averageValue = sumFetchedValues / numResults;
           averageValue = Math.round( averageValue * 100 ) / 100; //round to 2 decimal places
-          console.log("averageValue was: "+averageValue);
-          that.yValues.push( averageValue );
+          if ( averageValue < 0 ) averageValue = 0;
+          valuesContainer.unshift( averageValue );
         })
         .catch (function (error) {
           console.log("An error has occured during testing for params");
           console.log(error);
         })
       }
+      this.yValues = valuesContainer;
     },
   },
 };

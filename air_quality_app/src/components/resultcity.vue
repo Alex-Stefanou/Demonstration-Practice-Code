@@ -125,6 +125,7 @@ export default {
           }]
         },
         options: {
+          events: [],
           responsive: true,
           scales: {
             xAxes: [{
@@ -185,7 +186,7 @@ export default {
           }
           let averageValue = sumFetchedValues / numResults;
           averageValue = Math.round( averageValue * 100 ) / 100; //round to 2 decimal places
-          if ( averageValue < 0 ) averageValue = 0;
+          if ( averageValue < 0 ) averageValue = "NaN";
           valuesContainer.unshift( averageValue );
         })
         .catch (function (error) {

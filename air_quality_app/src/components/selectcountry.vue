@@ -2,7 +2,7 @@
   <div>
     <h1>Select a country</h1>
 
-    <input v-model="search" class="input" type="text">
+    <input v-model="search" class="input" type="text" placeholder="Search for a country">
 
     <div class="table-container">
       <table class="table">
@@ -13,12 +13,16 @@
           </tr>
         </tbody>
 
+        <tfoot>
+          |<span v-for="(page,j) in pageNumbers" :key="j">
+          <span @click="changePage" v-bind:id="page"> {{ page }} |</span>
+          </span>
+        </tfoot>
+
       </table>
     </div>
 
-    |<span v-for="(page,j) in pageNumbers" :key="j">
-      <span @click="changePage" v-bind:id="page"> {{ page }} |</span>
-    </span>
+    <div v-if="displayedCountries.length < 1">No results availible</div>
 
   </div>
 </template>

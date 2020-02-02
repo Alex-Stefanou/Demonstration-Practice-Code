@@ -2,7 +2,7 @@
   <div id="app">
    
     <div v-if="appState != 'home'">
-      <navbar/>
+      <navbar id="navbar"/>
     </div>
 
     <div v-if="appState == 'home'">
@@ -66,12 +66,60 @@ export default {
 </script>
 
 <style>
+@import "https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css";
+
+canvas {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+html {
+  height: 100vh;
+  background-image: url("./assets/sky_background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background-color: #314c9b;
+}
+
+h1 {
+  font-size: 28pt;
+}
+
+#navbar {
+  margin-top: -1em;
+  padding-top: 0.8em;
+  padding-bottom: 1.2em;
+  background-color: #18254b7a;
+  color: black;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: rgb(36, 36, 36);
+  margin-top: 1em;
+}
+
+.input {
+  width: 40%;
+  margin: auto;
+  margin-bottom: 0.5em;
+}
+
+.table {
+  width: 40%;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.table td {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+.table-container {
+  width: 100% !important;
+  margin-bottom: 0.2em;
 }
 </style>

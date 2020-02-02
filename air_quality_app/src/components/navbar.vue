@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="navigate" id="back">back</button>
-    <button @click="navigate" id="home">home</button>
-    <h1>This is the nav bar</h1>
+    <button @click="navigate" id="back" class="button is-small">back</button>
+    <button @click="navigate" id="home" class="button is-small">home</button>
+    <h1>Air Quality App</h1>
   </div>
 </template>
 
@@ -35,11 +35,20 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  font-size: 1em;
+}
+
 #back {
   float: left;
 }
-
 #home {
   float: right;
 }
+
+.button{
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
 </style>

@@ -12,14 +12,15 @@
             <td @click="navigateCity" v-bind:id="City">{{ City }}</td>
           </tr>
         </tbody>
+        
+        <tfoot>
+          |<span v-for="(page,j) in pageNumbers" :key="j">
+          <span @click="changePage" v-bind:id="page"> {{ page }} |</span>
+          </span>
+        </tfoot>
 
       </table>
     </div>
-
-    |<span v-for="(page,j) in pageNumbers" :key="j">
-      <span @click="changePage" v-bind:id="page"> {{ page }} |</span>
-    </span>
-
   </div>
 </template>
 
@@ -103,11 +104,11 @@ export default {
     },
 
     filterCities () {  //Performs search anywhere in city name (case insensitive)
-      this.filteredCountries = [];
+      this.filteredCities = [];
 
       for ( let i = 0; i < this.allCities.length; i++) {
         if ( this.allCities[i].toLowerCase().includes( this.search.toLowerCase() ) ) {
-          this.filteredCountries.push( this.allCities[i] );
+          this.filteredCities.push( this.allCities[i] );
         }
       }
     },

@@ -5,20 +5,20 @@
     </div>
 
     <div>
-      <p v-if="currentParameter == ''">No air quality measurements availible for this location in the last 3 months.</p>
+      <p v-if="currentParameter == ''" id="noResult">No air quality measurements availible for this location in the last 3 months.</p>
       <p v-else>Select an air quality parameter and time period.</p>
       |<span v-for="(parameter,j) in localParameters" :key="j">
       <span @click="changeParameter" v-bind:id="parameter"> {{ parameter }} |</span>
       </span>
     </div>
 
-    <div>
+    <div v-if="currentParameter != ''">
       |<span v-for="(period,i) in periods" :key="i">
       <span @click="changePeriod" v-bind:id="period"> {{ period }} |</span>
       </span>
     </div>
 
-    <div class="chart-container">
+    <div v-if="currentParameter != ''" class="chart-container">
       <p v-if="yValues.length != xDates.length"> Loading graph: {{ loadingPercentage }}%</p>
       <canvas id="AQchart"></canvas>
     </div>
@@ -128,6 +128,9 @@ export default {
           datasets: [{
             label: this.currentParameter,
             data: this.yValues,
+            borderColor: "#4d4d4d",
+            pointBackgroundColor: "#000000",
+            pointBorderColor: "#000000",
           }]
         },
         options: {
@@ -207,6 +210,10 @@ export default {
 </script>
 
 <style scoped>
+#noResult {
+  margin-top: 2em;
+  font-size: 1.5em;
+}
 .chart-container {
   width: 80%;
   margin: auto;

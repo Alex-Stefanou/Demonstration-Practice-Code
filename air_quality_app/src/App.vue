@@ -88,7 +88,7 @@ h1 {
   margin-top: -1em;
   padding-top: 0.6em;
   padding-bottom: 0.6em;
-  background-color: #18254b7a;
+  background-color: #1f3061;
   color: black;
 }
 

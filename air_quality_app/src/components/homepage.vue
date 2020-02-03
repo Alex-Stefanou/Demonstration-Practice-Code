@@ -9,7 +9,7 @@
     <div>
       <div @click="navigate" id="selectCountry">Select a Country and City</div>
       <div class="spacer">- or -</div>
-      <div @click="navigate" id="selectCoords">Enter a Latitude and Longditude</div>
+      <div @click="navigate" id="selectCoords">Enter a Latitude and Longitude</div>
     </div>
 
   </div>

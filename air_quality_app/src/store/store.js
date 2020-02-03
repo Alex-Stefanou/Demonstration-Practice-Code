@@ -11,6 +11,7 @@ export const store = new Vuex.Store({
     allCities: [],
     allCountries: [],
     selectedCity: "",
+    selectedCoordinates: [ 0, 0],
     selectedCountry: [ "" , "" ]
   },
 
@@ -18,6 +19,7 @@ export const store = new Vuex.Store({
     resetApp (state) {
       state.appState = "home";
       state.selectedCity = "";
+      state.selectedCoordinates = [ 0, 0];
       state.selectedCountry = [ "" , "" ];
       console.log("Application has been reset");
     },
@@ -25,6 +27,12 @@ export const store = new Vuex.Store({
     setCity (state, city) {
       state.selectedCity = city;
       console.log("selectedCity updated to: " + city);
+    },
+
+    setCoordinates ( state, Latitude, Longitude) {
+      state.selectedCoordinates[0] = Latitude;
+      state.selectedCoordinates[1] = Longitude;
+      console.log("Coordinates have been updated to: "+Latitude+" , "+Longitude);
     },
 
     setCountry (state, country) {
@@ -82,6 +90,7 @@ export const store = new Vuex.Store({
     allCities: state => state.allCities,
     allCountries: state => state.allCountries,
     selectedCity: state => state.selectedCity,
+    selectedCoordinates: state => state.selectedCoordinates,
     selectedCountry: state => state.selectedCountry //N.B. Unintuitively, this is an array
   },
 })

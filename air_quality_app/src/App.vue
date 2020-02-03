@@ -1,8 +1,8 @@
 <template>
   <div id="app">
    
-    <div v-if="appState != 'home'">
-      <navbar id="navbar"/>
+    <div v-if="appState != 'home'" id="navbar">
+      <navbar/>
     </div>
 
     <div v-if="appState == 'home'">
@@ -86,8 +86,8 @@ h1 {
 
 #navbar {
   margin-top: -1em;
-  padding-top: 0.8em;
-  padding-bottom: 1.2em;
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
   background-color: #18254b7a;
   color: black;
 }

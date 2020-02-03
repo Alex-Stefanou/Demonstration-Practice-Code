@@ -36,7 +36,8 @@ export default {
 
 <style scoped>
 h1 {
-  font-size: 1em;
+  line-height: 1.6em;
+  font-size: 1.2em;
 }
 
 #back {

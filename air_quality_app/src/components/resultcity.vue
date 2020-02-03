@@ -5,6 +5,8 @@
     </div>
 
     <div>
+      <p v-if="currentParameter == ''">No air quality measurements availible for this location in the last 3 months.</p>
+      <p v-else>Select an air quality parameter and time period.</p>
       |<span v-for="(parameter,j) in localParameters" :key="j">
       <span @click="changeParameter" v-bind:id="parameter"> {{ parameter }} |</span>
       </span>
@@ -17,7 +19,7 @@
     </div>
 
     <div class="chart-container">
-      Graph should be displayed here
+      <p v-if="yValues.length != xDates.length"> Loading graph: {{ loadingPercentage }}%</p>
       <canvas id="AQchart"></canvas>
     </div>
   </div>
@@ -63,6 +65,7 @@ export default {
           console.log(error);
         })
       }
+      
       return {
         currentParameter: "",
         currentPeriod: 30,
@@ -75,6 +78,12 @@ export default {
     };
   },
 
+  computed: {
+    loadingPercentage: function() {
+      return Math.floor( 100 * (this.yValues.length / this.xDates.length) );
+    }
+  },
+
   watch: {
     currentParameter: function() { //If user changes parameter replot the graph
       this.fetchGraphingData( this.currentParameter, this.currentPeriod );
@@ -85,10 +94,7 @@ export default {
     },
 
     localParameters: function() { //When page first loads, set a parameter
-    //!!!
-    //IF NO PARAMETERS CONDITION WILL GO HERE!!
-    //!!!
-      if (this.currentParameter == "" ) this.currentParameter = this.localParameters[0];
+      if ( this.currentParameter == "" ) this.currentParameter = this.localParameters[0];
     },
 
     yValues: function() { //Only render the graph after all data has been fetched

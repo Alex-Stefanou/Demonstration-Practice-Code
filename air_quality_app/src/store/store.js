@@ -29,10 +29,10 @@ export const store = new Vuex.Store({
       console.log("selectedCity updated to: " + city);
     },
 
-    setCoordinates ( state, Latitude, Longitude) {
-      state.selectedCoordinates[0] = Latitude;
-      state.selectedCoordinates[1] = Longitude;
-      console.log("Coordinates have been updated to: "+Latitude+" , "+Longitude);
+    setCoordinates ( state, inputCoords ) {
+      state.selectedCoordinates[0] = inputCoords[0];
+      state.selectedCoordinates[1] = inputCoords[1];
+      console.log("Coordinates stored in store: "+state.selectedCoordinates[0]+" , "+state.selectedCoordinates[1]);
     },
 
     setCountry (state, country) {

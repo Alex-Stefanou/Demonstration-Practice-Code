@@ -35,7 +35,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 
 export default {
   name: 'selectCoords',
@@ -73,7 +72,7 @@ export default {
       inputCoords[0] = Math.round( parseFloat( this.coordinate.latitude ) * 1E6 ) / 1E6;
       inputCoords[1] = Math.round( parseFloat( this.coordinate.longitude ) * 1E6 ) / 1E6;
 
-      this.$store.commit("setAppState", "resultCoords");
+      this.$store.commit("setAppState", "loadingpage");
       this.$store.commit("setCoordinates", inputCoords);
     },
 

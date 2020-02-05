@@ -23,6 +23,19 @@ export const store = new Vuex.Store({
       state.selectedCountry = [ "" , "" ];
       console.log("Application has been reset");
     },
+    
+    setAppState (state, newState) {
+      state.appState = newState;
+      console.log("appState updated to: " + newState);
+    },
+
+    setAllCities (state, cities) {
+      state.allCities = cities;
+    },
+
+    setAllCountries (state, countries) {
+      state.allCountries = countries;
+    }
 
     setCity (state, city) {
       state.selectedCity = city;
@@ -42,18 +55,10 @@ export const store = new Vuex.Store({
       console.log("selectedCountry updated to: " + country + " (code " + state.selectedCountry[1] + ").");
     },
 
-    setAppState (state, newState) {
-      state.appState = newState;
-      console.log("appState updated to: " + newState);
+    setCountryCode (state, code) {
+      state.selectedCountry[1] = code;
+      console.log("country code set to: "+state.selectedCountry[1])
     },
-
-    setAllCities (state, cities) {
-      state.allCities = cities;
-    },
-
-    setAllCountries (state, countries) {
-      state.allCountries = countries;
-    }
   },
   
   actions: {

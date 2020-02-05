@@ -25,6 +25,10 @@
       <selectCoords/>
     </div>
 
+    <div v-if="appState == 'loadingpage'">
+      <loadingpage/>
+    </div>
+
     <div v-if="appState == 'resultCoords'">
       <resultCoords/>
     </div>
@@ -39,6 +43,7 @@ import selectCountry from './components/selectcountry.vue'
 import selectCity from './components/selectcity.vue'
 import resultCity from './components/resultcity.vue'
 import selectCoords from './components/selectcoords.vue'
+import loadingpage from './components/loadingpage.vue'
 import resultCoords from './components/resultcoords.vue'
 
 export default {
@@ -50,6 +55,7 @@ export default {
     selectCity,
     resultCity,
     selectCoords,
+    loadingpage,
     resultCoords
   },
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h1>Air Quality for the last {{ currentPeriod}} days in {{ selectedCity }}, {{ selectedCountry }}</h1>
+      <h1>Air Quality for the last {{ currentPeriod }} days in {{ selectedCity }}, {{ selectedCountry }}</h1>
     </div>
 
     <div>
@@ -152,7 +152,6 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                // padding: 25,
               }
             }],
           }
@@ -180,8 +179,8 @@ export default {
         axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: Limit,
-            country: this.$store.state.selectedCountry[1],
-            city: this.$store.state.selectedCity,
+            country: this.$store.getters.selectedCountry[1],
+            city: this.$store.getters.selectedCity,
             parameter: param,
             date_from: startDate,
             date_to: endDate,

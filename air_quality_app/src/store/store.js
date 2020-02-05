@@ -12,7 +12,8 @@ export const store = new Vuex.Store({
     allCountries: [],
     selectedCity: "",
     selectedCoordinates: [ 0, 0],
-    selectedCountry: [ "" , "" ]
+    selectedCountry: [ "" , "" ],
+    selectedLocation: "",
   },
 
   mutations: { //UPDATE THIS AS MORE STATES ARE ADDED
@@ -35,7 +36,7 @@ export const store = new Vuex.Store({
 
     setAllCountries (state, countries) {
       state.allCountries = countries;
-    }
+    },
 
     setCity (state, city) {
       state.selectedCity = city;
@@ -57,8 +58,13 @@ export const store = new Vuex.Store({
 
     setCountryCode (state, code) {
       state.selectedCountry[1] = code;
-      console.log("country code set to: "+state.selectedCountry[1])
+      console.log("country code set to: "+state.selectedCountry[1]);
     },
+
+    setLocation (state, location) {
+      state.selectedLocation = location;
+      console.log("Location set to: "+state.selectedLocation);
+    }
   },
   
   actions: {
@@ -96,6 +102,7 @@ export const store = new Vuex.Store({
     allCountries: state => state.allCountries,
     selectedCity: state => state.selectedCity,
     selectedCoordinates: state => state.selectedCoordinates,
-    selectedCountry: state => state.selectedCountry //N.B. Unintuitively, this is an array
+    selectedCountry: state => state.selectedCountry, //N.B. Unintuitively, this is an array
+    selectedLocation: state => state.selectedLocation
   },
 })

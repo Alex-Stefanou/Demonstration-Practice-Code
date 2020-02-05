@@ -1,8 +1,13 @@
 <template>
   <div>
-    
-    <h1>Searching for a location near to</h1>
-    <h2>{{ coordinate.latitude }} , {{ coordinate.longitude }}</h2>
+
+    <div v-if="success == false">
+      <h1>No air quality measurements within 1000 km of ({{ coordinate.latitude }} , {{ coordinate.longitude }})</h1>
+    </div>
+    <div v-else>
+      <h1>Searching for a location near to ({{ coordinate.latitude }} , {{ coordinate.longitude }})</h1>
+      <h2>Scanning a {{ radius }} km radius</h2>
+    </div>
 
     <div>
       <img src="../assets/rotatingEarth.gif" alt="Rotating planet Earth">
@@ -19,7 +24,9 @@ import axios from 'axios'
 export default {
   name: 'loadingpage',
   
-  mounted() {},
+  mounted() {
+    this.getLocation()
+  },
   
   data() {
     var coordinate = {
@@ -37,6 +44,10 @@ export default {
   },
 
   computed: {
+    success: function() {
+      if ( this.radius < 1000 ) return true;
+      else return false;
+    }
   },
   
 
@@ -46,7 +57,7 @@ export default {
 
         const paramRadius = radius * 1000;
 
-        var locations = axios.get( "https://api.openaq.org/v1/measurements", {
+        const locations = axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: 5,
             coordinates: this.paramCoordinates,
@@ -56,7 +67,7 @@ export default {
         .then (function (response) {
           let fetchedData = response.data.results;
           if ( fetchedData.length == 5 ) { //if data exists, store it
-            return [ true, fetchedData[0].location, fetchedData[0].city, fetchedData[0].country ];
+            return [ true, fetchedData[0].country, fetchedData[0].city, fetchedData[0].location ];
           }
           else return [false];
         })
@@ -70,54 +81,40 @@ export default {
     },
 
     getLocation: async function () {
+      var data;
+      do{
+        //Increment radius - larger increments as radius increases
+        if ( this.radius < 20 ) this.radius += 2;
+        else if ( this.radius < 100 ) this.radius += 5;
+        else if ( this.radius < 500 ) this.radius += 20;
+        else if ( this.radius < 1000 ) this.radius += 50;
+        else break; //If radius > 1000 km give up
 
-      this.radius++;
-      const paramRadius = this.radius*1000;
+        const results = await this.scanLocations( this.radius )
+        
+        data = results;
+      } while ( data[0] == false )
 
-      const results = await this.scanLocations( this.radius )
-      console.log(results);
+      if ( data[0] == true ) { //If a location was found, commit to store
+        this.$store.commit("setAppState", "resultcoords");
+        this.$store.commit("setCountryCode", data[1]);
+        this.$store.commit("setCity", data[2]);
+        this.$store.commit("setLocation", data[3]);
+      }
     }
   }
-
-      // var inputCoords = this.$store.getters.selectedCoordinates;
-      // const paramCoordinates = inputCoords[0].toString()+","+inputCoords[1].toString();
-
-      // const testLimit = 5;
-      // var localParameters = [];
-      // var locations = [];
-      // var radius = 0;
-      // let that = this;
-      // console.log("preparing to start loop")
-      // do {
-      //   radius += 10000; //Increment search radius 1km
-      //   console.log("performing search with radius "+radius)
-      //   axios.get( "https://api.openaq.org/v1/measurements", {
-      //     params: {
-      //       limit: testLimit,
-      //       coordinates: paramCoordinates,
-      //       radius: radius,
-      //       // parameter: this.$store.getters.AQparameter[i],  //parameter set here
-      //     }
-      //   })
-      //   .then (function (response) {
-      //     let fetchedData = response.data.results;
-      //     if ( fetchedData.length == 5 ) { //if data exists for given parameter, store it
-      //       that.locations.push( fetchedData[0].parameter );
-      //     }
-      //   })
-      //   .catch (function (error) {
-      //     console.log("An error has occured during testing for params");
-      //     console.log(error);
-      //   })
-      // } while ( locations.length < 1 )
-
 
 };
 </script>
 
 <style scoped>
+h1 {
+  margin-top: 1em;
+  font-size: 1.6em;
+}
 h2 {
-  font-size: 1.5em;
+  margin-top: 1em;
+  font-size: 1.4em;
 }
 img {
   margin-top: 3em;

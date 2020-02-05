@@ -1,8 +1,7 @@
 <template>
   <div>
     <div>
-      <h2>Air Quality near coords {{ inputCoords[0] }}, {{ inputCoords[1] }} is:</h2>
-      <!-- <h1>Air Quality for the last {{ currentPeriod }} days in {{ selectedCity }}, {{ selectedCountry }}</h1> -->
+      <h1>Air Quality for the last {{ currentPeriod }} days in {{ selectedCity }}, {{ selectedCountry }}</h1>
     </div>
 
     <div>
@@ -42,50 +41,22 @@ export default {
    *  abitrarily small amount of data (testLimit) for each parameter, and if it exists, logs that
    *  parameter in localParameters. */
   data() {
-      var inputCoords = this.$store.getters.selectedCoordinates;
-      const paramCoordinates = inputCoords[0].toString()+","+inputCoords[1].toString();
-
-      const testLimit = 5;
+      const testLimit = 9;
       var localParameters = [];
-      var locations = [];
-      var radius = 0;
       let that = this;
-      console.log("preparing to start loop")
-      do {
-        radius += 10000; //Increment search radius 1km
-        console.log("performing search with radius "+radius)
-        axios.get( "https://api.openaq.org/v1/measurements", {
-          params: {
-            limit: testLimit,
-            coordinates: paramCoordinates,
-            radius: radius,
-            // parameter: this.$store.getters.AQparameter[i],  //parameter set here
-          }
-        })
-        .then (function (response) {
-          let fetchedData = response.data.results;
-          if ( fetchedData.length == 5 ) { //if data exists for given parameter, store it
-            that.locations.push( fetchedData[0].parameter );
-          }
-        })
-        .catch (function (error) {
-          console.log("An error has occured during testing for params");
-          console.log(error);
-        })
-      } while ( locations.length < 1 )
-
-
+      
       for( var i = 0; i < this.$store.getters.AQparameter.length; i++) { //fetch for each possible parameter
         axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: testLimit,
-            coordinates: paramCoordinates,
+            country: this.$store.state.selectedCountry[1],
+            city: this.$store.state.selectedCity,
             parameter: this.$store.getters.AQparameter[i],  //parameter set here
           }
         })
         .then (function (response) {
           let fetchedData = response.data.results;
-          if ( fetchedData.length == 5 ) { //if data exists for given parameter, store it
+          if ( fetchedData.length == 9 ) { //if data exists for given parameter, store it
             that.localParameters.push( fetchedData[0].parameter );
           }
         })
@@ -98,12 +69,10 @@ export default {
       return {
         currentParameter: "",
         currentPeriod: 30,
-        inputCoords,
         localParameters,
-        paramCoordinates,
         periods: ["Week", "Month", "3 Months"],
-        // selectedCity: this.$store.getters.selectedCity,
-        // selectedCountry: this.$store.getters.selectedCountry[0],
+        selectedCity: this.$store.getters.selectedCity,
+        selectedCountry: this.$store.getters.selectedCountry[0],
         xDates: [],
         yValues: [],
     };
@@ -210,7 +179,8 @@ export default {
         axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: Limit,
-            coordinates: this.paramCoordinates,
+            country: this.$store.getters.selectedCountry[1],
+            city: this.$store.getters.selectedCity,
             parameter: param,
             date_from: startDate,
             date_to: endDate,

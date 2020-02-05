@@ -1,7 +1,7 @@
 <template>
   <div id="app">
    
-    <div v-if="appState != 'home'" id="navbar">
+    <div v-if="appState != 'home' && appState != 'loadingpage'" id="navbar">
       <navbar/>
     </div>
 

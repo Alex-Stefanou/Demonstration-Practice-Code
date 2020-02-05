@@ -168,6 +168,7 @@ export default {
       let currentDate = new Date();
       let valuesContainer = [];
 
+      /* For each day in the time period fetch all data for given parameter and average it*/
       for (var days = 0; days < period; days++) {
         const startDate = new Date();
         const endDate = new Date();
@@ -175,8 +176,9 @@ export default {
         startDate.setDate( currentDate.getDate() - days - 1 );
         endDate.setDate( currentDate.getDate() - days );
 
+        /*Load part of date string as independent variable*/
         this.xDates.unshift( startDate.toString().slice(4, 10) );
-        // this.xDates.unshift( startDate );
+
         axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: Limit,
@@ -200,10 +202,11 @@ export default {
           valuesContainer.unshift( averageValue );
         })
         .catch (function (error) {
-          console.log("An error has occured during testing for params");
+          console.log("An error has occured while fetching measurements");
           console.log(error);
         })
       }
+      /*Load fetched measurements as dependent variable*/
       this.yValues = valuesContainer;
     },
   },

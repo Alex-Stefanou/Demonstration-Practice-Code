@@ -16,11 +16,12 @@ export const store = new Vuex.Store({
     selectedLocation: "",
   },
 
-  mutations: { //UPDATE THIS AS MORE STATES ARE ADDED
+  mutations: {
     resetApp (state) {
       state.appState = "home";
-      state.selectedCity = "";
       state.selectedCoordinates = [ 0, 0];
+      state.selectedLocation = "";
+      state.selectedCity = "";
       state.selectedCountry = [ "" , "" ];
       console.log("Application has been reset");
     },

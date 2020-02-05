@@ -19,11 +19,6 @@
 export default {
   name: 'homepage',
 
-  data() {
-    return{
-    };
-  },
-
   methods: {
     navigate: function(e) {
       if ( e.toElement.id == "selectCountry" )     this.$store.commit("setAppState", "selectCountry");
@@ -31,6 +26,7 @@ export default {
       else console.log("Navigation from homepage failed.")
     }
   },
+  
 };
 </script>
 

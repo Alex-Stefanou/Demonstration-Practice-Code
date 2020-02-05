@@ -41,6 +41,7 @@ export default {
   },
 
   computed: {
+    /*consider search failed once radius > 1000 km */
     success: function() {
       if ( this.radius < 1000 ) return true;
       else return false;
@@ -54,6 +55,7 @@ export default {
       this.$store.commit("setAppState", "selectCoords");
     },
 
+    /*Search for locations at current radius */
     scanLocations: function ( radius ) {
       return new Promise(resolve => {
 
@@ -85,15 +87,15 @@ export default {
     getLocation: async function () {
       var data;
       do{
-        //Increment radius - larger increments as radius increases
+        /*Increment radius - larger increments as radius increases*/
         if ( this.radius < 20 ) this.radius += 2;
         else if ( this.radius < 100 ) this.radius += 5;
         else if ( this.radius < 500 ) this.radius += 20;
         else if ( this.radius < 1000 ) this.radius += 50;
         else break; //If radius > 1000 km give up
-
-        const results = await this.scanLocations( this.radius )
         
+        /*waits for fetched data before continuing loop*/
+        const results = await this.scanLocations( this.radius )
         data = results;
       } while ( data[0] == false )
 
@@ -120,5 +122,8 @@ h2 {
 }
 img {
   margin-top: 3em;
+}
+.button {
+  margin-top: 2em;
 }
 </style>

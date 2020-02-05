@@ -39,8 +39,6 @@
 export default {
   name: 'selectCoords',
   
-  mounted() {},
-  
   data() {
     return{
       coordinate: { latitude: "", longitude: ""},
@@ -65,7 +63,6 @@ export default {
     }
   },
   
-
   methods: {
     setCoords: function() { //Round user input to 6 decimal places and commit to store
       let inputCoords = [ 0, 0 ]
@@ -127,6 +124,7 @@ export default {
       return true;
     }
   },
+  
 };
 </script>
 

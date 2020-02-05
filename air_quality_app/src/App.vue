@@ -77,6 +77,7 @@ export default {
 canvas {
   background-color: rgba(255, 255, 255, 0.8);
 }
+
 html {
   height: 100vh;
   background-image: url("./assets/sky_background.png");

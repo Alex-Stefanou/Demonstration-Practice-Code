@@ -31,6 +31,7 @@ export default {
       else console.log("Navigation from navbar failed.")
     }
   },
+  
 };
 </script>
 

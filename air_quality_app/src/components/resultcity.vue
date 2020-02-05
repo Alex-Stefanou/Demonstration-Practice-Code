@@ -49,8 +49,8 @@ export default {
         axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: testLimit,
-            country: this.$store.state.selectedCountry[1],
-            city: this.$store.state.selectedCity,
+            country: this.$store.getters.selectedCountry[1],
+            city: this.$store.getters.selectedCity,
             parameter: this.$store.getters.AQparameter[i],  //parameter set here
           }
         })
@@ -120,7 +120,6 @@ export default {
 
     createGraph () {
       var ctx = document.getElementById("AQchart").getContext('2d');
-      console.log("chart being created with x values: "+this.xDates+" and y values "+this.yValues);
       var myChart = new Chart (ctx, {
         type: 'line',
         data: {

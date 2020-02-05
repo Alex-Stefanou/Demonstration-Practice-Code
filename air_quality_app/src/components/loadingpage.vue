@@ -3,17 +3,14 @@
 
     <div v-if="success == false">
       <h1>No air quality measurements within 1000 km of ({{ coordinate.latitude }} , {{ coordinate.longitude }})</h1>
+      <button @click="back" class="button">Go back</button>
     </div>
+
     <div v-else>
       <h1>Searching for a location near to ({{ coordinate.latitude }} , {{ coordinate.longitude }})</h1>
       <h2>Scanning a {{ radius }} km radius</h2>
-    </div>
-
-    <div>
       <img src="../assets/rotatingEarth.gif" alt="Rotating planet Earth">
     </div>
-    
-    <button @click="getLocation">Get location</button>
 
   </div>
 </template>
@@ -52,6 +49,11 @@ export default {
   
 
   methods: {
+    back: function () {
+      this.$store.commit("resetApp");
+      this.$store.commit("setAppState", "selectCoords");
+    },
+
     scanLocations: function ( radius ) {
       return new Promise(resolve => {
 
@@ -96,7 +98,7 @@ export default {
       } while ( data[0] == false )
 
       if ( data[0] == true ) { //If a location was found, commit to store
-        this.$store.commit("setAppState", "resultcoords");
+        this.$store.commit("setAppState", "resultCoords");
         this.$store.commit("setCountryCode", data[1]);
         this.$store.commit("setCity", data[2]);
         this.$store.commit("setLocation", data[3]);

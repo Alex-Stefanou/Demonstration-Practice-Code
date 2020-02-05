@@ -49,8 +49,9 @@ export default {
         axios.get( "https://api.openaq.org/v1/measurements", {
           params: {
             limit: testLimit,
-            country: this.$store.state.selectedCountry[1],
-            city: this.$store.state.selectedCity,
+            country: this.$store.getters.selectedCountry[1],
+            city: this.$store.getters.selectedCity,
+            location: this.$store.getters.selectedLocation,
             parameter: this.$store.getters.AQparameter[i],  //parameter set here
           }
         })
@@ -72,7 +73,8 @@ export default {
         localParameters,
         periods: ["Week", "Month", "3 Months"],
         selectedCity: this.$store.getters.selectedCity,
-        selectedCountry: this.$store.getters.selectedCountry[0],
+        selectedCountry: this.$store.getters.selectedCountry[1],
+        selectedLocation: this.$store.getters.selectedLocation,
         xDates: [],
         yValues: [],
     };
@@ -120,7 +122,6 @@ export default {
 
     createGraph () {
       var ctx = document.getElementById("AQchart").getContext('2d');
-      console.log("chart being created with x values: "+this.xDates+" and y values "+this.yValues);
       var myChart = new Chart (ctx, {
         type: 'line',
         data: {
@@ -181,6 +182,7 @@ export default {
             limit: Limit,
             country: this.$store.getters.selectedCountry[1],
             city: this.$store.getters.selectedCity,
+            location: this.$store.getters.selectedLocation,
             parameter: param,
             date_from: startDate,
             date_to: endDate,

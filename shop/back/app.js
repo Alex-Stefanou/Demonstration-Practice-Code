@@ -1,19 +1,18 @@
 const express = require('express')
 const app = express()
-const port = 5000
+const port = 4000
 
 const liquid_model = require('./models/liquid_model')
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 app.get('/', (req, res) => {
-    // console.log(req);
-    // console.log(res);
-    res.send('Hello World!')
+    res.send("Alex's Elixiers Emporium Inventory API.\n Access data using './list_stock'")
 })
 
-//route
-app.get('/liquids', (req, res) => res.send(liquid_model.list() ))
+app.get('/list_stock', (req, res) => {
+    res.send(liquid_model.list() )
+})
 
 app.get('/liquids/:id', (req, res) => {
     const id = req.params.id;

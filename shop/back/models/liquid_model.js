@@ -63,10 +63,10 @@ const data = [
 ];
 
 module.exports = {
+    listStock: function() {
+        return data;
+    },
     get: function(id) {
         return data[id];
     },
-    list: function() {
-        return data;
-    }
 }

@@ -1,6 +1,8 @@
 <template>
-  <div class="hello">
+  <div>
+
     <h1> table will go here </h1>
+
   </div>
 </template>
 

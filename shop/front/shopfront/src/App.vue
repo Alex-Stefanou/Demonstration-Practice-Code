@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <h1>Alex's Elixier Emporium Inventory</h1>
+    <p>
+      {{ invent }}
+    </p>
 
     <button @click="open" type="button" class="button">Add/Remove Stock</button>
     <modal/>
@@ -22,6 +25,11 @@ export default {
   },
   mounted: function() {
     this.$store.dispatch("updateInventory");
+  },
+  computed: {
+    invent: function() {
+      return this.$store.getters.inventory
+    }
   },
 
   methods: {

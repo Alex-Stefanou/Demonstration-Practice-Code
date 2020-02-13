@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
 
     mutations: {
         setInventory (state, inventory) {
+            console.log(typeof inventory);
             state.inventory = inventory;
             console.log("The store inventory has been updated to: "+state.inventory)
         },
